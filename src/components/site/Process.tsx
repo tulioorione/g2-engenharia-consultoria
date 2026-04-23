@@ -86,8 +86,13 @@ const Step = ({
   start: number;
   end: number;
 }) => {
-  const opacity = useTransform(progress, [start - 0.05, start + 0.05, end, end + 0.1], [0.25, 1, 1, 0.35]);
-  const y = useTransform(progress, [start - 0.05, start + 0.05], [20, 0]);
+  const clamp = (n: number) => Math.max(0, Math.min(1, n));
+  const a = clamp(start - 0.05);
+  const b = clamp(start + 0.05);
+  const c = clamp(end);
+  const d = clamp(end + 0.1);
+  const opacity = useTransform(progress, [a, Math.max(a, b), Math.max(b, c), Math.max(c, d)], [0.25, 1, 1, 0.35]);
+  const y = useTransform(progress, [a, Math.max(a, b)], [20, 0]);
 
   return (
     <motion.div style={{ opacity, y }} className="grid grid-cols-[auto_1fr] gap-6 md:gap-10 items-start">
