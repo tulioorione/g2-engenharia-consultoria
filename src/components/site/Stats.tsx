@@ -1,4 +1,4 @@
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useInView, useMotionValue, useReducedMotion, useTransform, animate } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 const stats = [
@@ -13,13 +13,18 @@ const Counter = ({ to, suffix }: { to: number; suffix: string }) => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const mv = useMotionValue(0);
   const rounded = useTransform(mv, (v) => `${Math.round(v)}${suffix}`);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (inView) {
-      const ctrl = animate(mv, to, { duration: 2, ease: [0.22, 1, 0.36, 1] });
-      return () => ctrl.stop();
+    if (!inView) return;
+    // A contagem é imperativa, então o MotionConfig do App não a alcança.
+    if (reduceMotion) {
+      mv.set(to);
+      return;
     }
-  }, [inView, mv, to]);
+    const ctrl = animate(mv, to, { duration: 2, ease: [0.22, 1, 0.36, 1] });
+    return () => ctrl.stop();
+  }, [inView, mv, to, reduceMotion]);
 
   return <motion.span ref={ref}>{rounded}</motion.span>;
 };

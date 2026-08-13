@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const testimonials = [
@@ -27,16 +27,28 @@ const testimonials = [
 
 export const Testimonials = () => {
   const [i, setI] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const t = setInterval(() => setI((p) => (p + 1) % testimonials.length), 7000);
-    return () => clearInterval(t);
-  }, []);
+    // WCAG 2.2.2: conteúdo que troca sozinho precisa de um jeito de parar.
+    // Pausa no hover e quando o foco entra na seção; com reduced-motion,
+    // não roda de forma alguma.
+    if (paused || reduceMotion) return;
+    const t = setTimeout(() => setI((p) => (p + 1) % testimonials.length), 7000);
+    return () => clearTimeout(t);
+  }, [i, paused, reduceMotion]);
 
   const t = testimonials[i];
 
   return (
-    <section className="relative bg-primary-deep py-24 md:py-32 overflow-hidden">
+    <section
+      className="relative bg-primary-deep py-24 md:py-32 overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
       <div className="container-cz">
         <div className="eyebrow text-silver mb-12">
           <span className="inline-block h-px w-8 bg-silver" />
@@ -73,9 +85,18 @@ export const Testimonials = () => {
             <button
               key={idx}
               onClick={() => setI(idx)}
-              aria-label={`Depoimento ${idx + 1}`}
-              className={`h-px transition-all duration-500 ${idx === i ? "w-12 bg-accent" : "w-6 bg-silver/30"}`}
-            />
+              aria-label={`Depoimento ${idx + 1} de ${testimonials.length}`}
+              aria-current={idx === i}
+              /* py-3 dá ~26px de área de toque; a linha de 1px continua sendo
+                 o que se vê. Antes o botão inteiro tinha 1px de altura. */
+              className="group flex items-center py-3"
+            >
+              <span
+                className={`block h-px transition-all duration-500 ${
+                  idx === i ? "w-12 bg-accent" : "w-6 bg-silver/30 group-hover:bg-silver/60"
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>
