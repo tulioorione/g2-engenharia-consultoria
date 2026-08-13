@@ -1,16 +1,5 @@
 import { motion } from "framer-motion";
-import { Pickaxe, Building2, Factory, Zap, TrainTrack, Droplets, Truck, Wheat } from "lucide-react";
-
-const sectors = [
-  { icon: Pickaxe, name: "Mineração" },
-  { icon: Building2, name: "Construção Civil" },
-  { icon: Factory, name: "Industrial" },
-  { icon: Zap, name: "Energia" },
-  { icon: TrainTrack, name: "Infraestrutura" },
-  { icon: Droplets, name: "Saneamento" },
-  { icon: Truck, name: "Logística" },
-  { icon: Wheat, name: "Agronegócio" },
-];
+import { setores } from "@/config/setores";
 
 export const Sectors = () => {
   return (
@@ -32,20 +21,19 @@ export const Sectors = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-          {sectors.map((s, i) => (
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {setores.map((s, i) => (
             <motion.div
               key={s.name}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.04 }}
-              className="group flex items-center gap-4 border border-border bg-background px-5 py-6 transition-all duration-500 hover:bg-primary hover:border-primary hover:-translate-y-0.5"
+              className="flex flex-col border border-border bg-background px-5 py-6"
             >
-              <s.icon className="h-5 w-5 text-primary transition-colors duration-500 group-hover:text-accent" strokeWidth={1.5} />
-              <span className="text-sm font-medium text-primary transition-colors duration-500 group-hover:text-primary-foreground">
-                {s.name}
-              </span>
+              <s.icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
+              <span className="mt-4 text-sm font-medium text-primary">{s.name}</span>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
             </motion.div>
           ))}
         </div>

@@ -52,7 +52,8 @@ export const Hero = () => {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="mt-8 max-w-xl text-lg text-primary-foreground/80 md:text-xl"
         >
-          Soluções em engenharia e consultoria com a precisão que seu projeto exige.
+          Estudos de viabilidade, gestão e supervisão de obras para mineração, energia e
+          infraestrutura — do parecer técnico à entrega fiscalizada.
         </motion.p>
 
         <motion.div
@@ -84,7 +85,7 @@ export const Hero = () => {
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-silver"
       >
         <div className="flex flex-col items-center gap-3">
-          <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+          <span className="text-[10px] uppercase tracking-[0.3em]">Role</span>
           <div className="h-12 w-px animate-bounce-soft bg-silver/60" />
         </div>
       </motion.div>

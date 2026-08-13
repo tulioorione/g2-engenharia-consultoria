@@ -28,7 +28,14 @@ export const Services = ({ compact = false }: { compact?: boolean }) => {
           </p>
         </motion.div>
 
-        <div className="mt-16 grid gap-px bg-silver/10 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Na home cabem 4 colunas porque só há título e uma frase. Na página
+            de serviços entram "quando você precisa" e a lista de entregáveis —
+            que em 4 colunas ficariam ilegíveis. */}
+        <div
+          className={`mt-16 grid gap-px bg-silver/10 ${
+            compact ? "sm:grid-cols-2 lg:grid-cols-4" : "lg:grid-cols-2"
+          }`}
+        >
           {services.map((s, i) => (
             <motion.div
               key={s.title}
@@ -46,6 +53,36 @@ export const Services = ({ compact = false }: { compact?: boolean }) => {
               />
               <h3 className="mt-8 text-xl text-primary-foreground">{s.title}</h3>
               <p className="mt-3 text-sm text-primary-foreground/65 leading-relaxed flex-1">{s.desc}</p>
+
+              {!compact && (
+                <>
+                  <div className="mt-8 border-t border-silver/15 pt-6">
+                    <div className="text-[11px] uppercase tracking-[0.2em] text-silver">
+                      Quando você precisa
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed text-primary-foreground/70">
+                      {s.quando}
+                    </p>
+                  </div>
+                  <div className="mt-6">
+                    <div className="text-[11px] uppercase tracking-[0.2em] text-silver">
+                      O que você recebe
+                    </div>
+                    <ul className="mt-3 space-y-2">
+                      {s.entregaveis.map((e) => (
+                        <li
+                          key={e}
+                          className="flex gap-3 text-sm leading-relaxed text-primary-foreground/70"
+                        >
+                          <span aria-hidden="true" className="mt-2 h-px w-3 shrink-0 bg-silver/60" />
+                          {e}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              )}
+
               {compact && (
                 <>
                   <div className="mt-8 flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-silver transition-colors duration-500 group-hover:text-accent">

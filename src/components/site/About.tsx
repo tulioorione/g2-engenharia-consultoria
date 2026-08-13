@@ -22,14 +22,19 @@ export const About = ({ compact = false }: { compact?: boolean }) => {
           <h2 className="text-4xl text-primary md:text-5xl lg:text-[56px] leading-[1.05]">
             Engenharia <span className="font-serif italic font-light">que resolve.</span>
           </h2>
+          {/* @ficticio A trajetória de "duas décadas em canteiros" e o compromisso
+              de acompanhamento por sócio precisam do aval do dono. A formulação foi
+              escolhida de propósito: atribui a experiência às pessoas — o que tende
+              a ser verdade — em vez de à empresa, que é nova. Ver auditoria de
+              conteúdo, itens 07 e 08. */}
           <p className="mt-8 text-lg text-muted-foreground leading-relaxed max-w-xl">
-            A G2 Engenharia e Consultoria atua há mais de duas décadas projetando, supervisionando e
-            entregando soluções técnicas para projetos de infraestrutura, indústria e mineração.
+            A G2 nasce da trajetória de engenheiros que passaram duas décadas em canteiros de
+            mineração, energia e infraestrutura.
           </p>
           {!compact && (
             <p className="mt-4 text-lg text-muted-foreground leading-relaxed max-w-xl">
-              Combinamos rigor de engenharia, gestão disciplinada e visão estratégica para transformar
-              cenários complexos em projetos viáveis, seguros e dentro do prazo.
+              A experiência é longa; a empresa é nova. É por isso que aqui cada projeto é
+              acompanhado por sócio — não repassado para equipe júnior.
             </p>
           )}
 

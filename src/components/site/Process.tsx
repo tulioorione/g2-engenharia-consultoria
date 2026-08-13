@@ -1,26 +1,36 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
+/**
+ * @ficticio Os entregáveis nomeados abaixo descrevem um compromisso comercial
+ * que a G2 ainda não confirmou. Diagnóstico → Planejamento → Execução → Entrega
+ * é um processo genérico; o que diferencia é dizer o que o cliente recebe em
+ * cada etapa. Precisa do aval do dono, linha por linha.
+ */
 const steps = [
   {
     n: "01",
     title: "Diagnóstico",
-    desc: "Imersão no contexto, levantamento técnico e mapeamento dos riscos do projeto.",
+    desc: "Visita técnica, leitura de projeto e mapeamento dos riscos.",
+    entrega: "Relatório com riscos priorizados e estimativa de ordem de grandeza.",
   },
   {
     n: "02",
     title: "Planejamento",
-    desc: "Estratégia detalhada de escopo, cronograma, orçamento e governança.",
+    desc: "Escopo fechado, governança e matriz de responsabilidades entre as partes.",
+    entrega: "Cronograma físico-financeiro e baseline de custo.",
   },
   {
     n: "03",
     title: "Execução",
-    desc: "Coordenação multidisciplinar com controle ativo de qualidade e segurança.",
+    desc: "Coordenação em campo, controle de qualidade e frente de segurança.",
+    entrega: "Relatório periódico de progresso e registro de não conformidades.",
   },
   {
     n: "04",
     title: "Entrega",
-    desc: "Validação técnica, documentação completa e transferência estruturada ao cliente.",
+    desc: "Comissionamento, as-built e transferência documentada ao cliente.",
+    entrega: "Dossiê técnico completo e ART de conclusão.",
   },
 ];
 
@@ -81,7 +91,7 @@ const Step = ({
   start,
   end,
 }: {
-  step: { n: string; title: string; desc: string };
+  step: { n: string; title: string; desc: string; entrega: string };
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
   start: number;
   end: number;
@@ -100,6 +110,12 @@ const Step = ({
       <div className="pt-2 md:pt-4">
         <h3 className="text-2xl md:text-3xl">{step.title}</h3>
         <p className="mt-3 max-w-xl text-primary-foreground/70 leading-relaxed">{step.desc}</p>
+        <p className="mt-3 max-w-xl text-sm leading-relaxed text-silver">
+          <span className="uppercase tracking-[0.15em] text-primary-foreground/50">
+            Você recebe:
+          </span>{" "}
+          {step.entrega}
+        </p>
       </div>
     </motion.div>
   );
