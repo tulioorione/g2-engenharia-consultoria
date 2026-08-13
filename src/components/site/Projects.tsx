@@ -1,23 +1,29 @@
 import { motion } from "framer-motion";
-import mining from "@/assets/project-mining.jpg";
-import energy from "@/assets/project-energy.jpg";
-import infra from "@/assets/project-infra.jpg";
+import mining from "@/assets/project-mining.webp";
+import miningSm from "@/assets/project-mining-800.webp";
+import energy from "@/assets/project-energy.webp";
+import energySm from "@/assets/project-energy-800.webp";
+import infra from "@/assets/project-infra.webp";
+import infraSm from "@/assets/project-infra-800.webp";
 
 const projects = [
   {
     image: mining,
+    imageSm: miningSm,
     category: "Mineração",
     title: "Reestruturação de cava em mina de grande porte",
     desc: "Reorganização operacional e plano de lavra para mina de minério de ferro com ganho de 18% em produtividade.",
   },
   {
     image: energy,
+    imageSm: energySm,
     category: "Energia",
     title: "Modernização de usina hidrelétrica",
     desc: "Estudo técnico e supervisão da modernização eletromecânica de PCH com 45 MW de capacidade instalada.",
   },
   {
     image: infra,
+    imageSm: infraSm,
     category: "Infraestrutura",
     title: "Ponte rodoviária sobre travessia fluvial",
     desc: "Gerenciamento integrado da execução de ponte de 1,2 km, incluindo fundações em águas profundas.",
@@ -61,8 +67,11 @@ export const Projects = () => {
               <div className="group relative aspect-[4/3] overflow-hidden bg-muted">
                 <img
                   src={p.image}
+                  srcSet={`${p.imageSm} 800w, ${p.image} 1600w`}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   alt={p.title}
                   loading="lazy"
+                  decoding="async"
                   width={1600}
                   height={1067}
                   className="h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import aboutImage from "@/assets/about-team.jpg";
+import aboutImage from "@/assets/about-team.webp";
+import aboutImage640 from "@/assets/about-team-640.webp";
 
 export const About = () => {
   return (
@@ -50,8 +51,11 @@ export const About = () => {
           <div className="aspect-[4/5] overflow-hidden bg-muted">
             <img
               src={aboutImage}
+              srcSet={`${aboutImage640} 640w, ${aboutImage} 1280w`}
+              sizes="(min-width: 1024px) 50vw, 100vw"
               alt="Engenheiros analisando projetos no canteiro de obras"
               loading="lazy"
+              decoding="async"
               width={1280}
               height={1280}
               className="h-full w-full object-cover"

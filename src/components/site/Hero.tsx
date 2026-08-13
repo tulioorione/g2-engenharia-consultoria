@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import heroImage from "@/assets/hero-construction.jpg";
+import heroImage from "@/assets/hero-construction.webp";
+import hero1280 from "@/assets/hero-construction-1280.webp";
+import hero768 from "@/assets/hero-construction-768.webp";
 
 export const Hero = () => {
   return (
@@ -7,10 +9,15 @@ export const Hero = () => {
       <div className="absolute inset-0">
         <img
           src={heroImage}
+          srcSet={`${hero768} 768w, ${hero1280} 1280w, ${heroImage} 1920w`}
+          sizes="100vw"
           alt="Vista aérea de canteiro de obras de grande porte"
           className="h-full w-full object-cover"
           width={1920}
           height={1080}
+          /* É o LCP da página: precisa sair na frente do resto. */
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-hero-overlay" />
         <div className="absolute inset-0 bg-primary/30 mix-blend-multiply" />
