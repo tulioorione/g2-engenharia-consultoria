@@ -92,6 +92,16 @@
     letter-spacing: -0.02em;
     font-weight: 600;
   }
+  /* O header é fixo (88px no topo, 64px após rolar). Sem isto, clicar num
+     item do menu leva a seção para debaixo do header e esconde o título. */
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+  /* O outline padrão do browser some sobre o navy escuro. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 3px;
+  }
   .font-serif {
     font-family: 'Fraunces', Georgia, serif;
     font-optical-sizing: auto;

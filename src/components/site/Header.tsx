@@ -20,6 +20,15 @@ export const Header = () => {
     return scrollY.on("change", (v) => setScrolled(v > 24));
   }, [scrollY]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   return (
     <motion.header
       style={{ height }}
@@ -58,7 +67,9 @@ export const Header = () => {
           <button
             className="lg:hidden text-primary-foreground"
             onClick={() => setOpen(!open)}
-            aria-label="Abrir menu"
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={open}
+            aria-controls="menu-mobile"
           >
             <div className="flex h-10 w-10 flex-col items-center justify-center gap-1.5">
               <span className={`h-px w-6 bg-current transition-transform ${open ? "translate-y-[7px] rotate-45" : ""}`} />
@@ -70,7 +81,7 @@ export const Header = () => {
       </div>
 
       {open && (
-        <div className="lg:hidden bg-primary-deep border-t border-silver/10">
+        <div id="menu-mobile" className="lg:hidden bg-primary-deep border-t border-silver/10">
           <div className="container-cz flex flex-col gap-1 py-4">
             {navItems.map((item) => (
               <a
