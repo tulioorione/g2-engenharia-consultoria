@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { PageHeader } from "@/components/site/PageHeader";
 import { contato } from "@/config/contato";
+import { Seo } from "@/components/site/Seo";
 
 const canais = [
   { icon: Mail, label: "E-mail", value: contato.email, href: `mailto:${contato.email}` },
@@ -11,6 +12,11 @@ const canais = [
 
 const Contato = () => (
   <>
+    <Seo
+      title="Contato — Fale com a G2 Engenharia"
+      description="Conte o que seu projeto precisa. Respondemos com clareza técnica e sem enrolação."
+      path="/contato"
+    />
     <PageHeader
       eyebrow="Vamos conversar"
       title="Pronto para transformar seu"

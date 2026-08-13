@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import { AppProviders } from "@/App";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 
@@ -18,19 +19,21 @@ const ScrollToTop = () => {
 
 export const Layout = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <ScrollToTop />
-      <a
-        href="#conteudo"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-primary-foreground focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-primary"
-      >
-        Pular para o conteúdo
-      </a>
-      <Header />
-      <main id="conteudo">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
+    <AppProviders>
+      <div className="min-h-screen bg-background">
+        <ScrollToTop />
+        <a
+          href="#conteudo"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-primary-foreground focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-primary"
+        >
+          Pular para o conteúdo
+        </a>
+        <Header />
+        <main id="conteudo">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </AppProviders>
   );
 };

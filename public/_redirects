@@ -1,5 +1,7 @@
-# SPA: qualquer rota é servida pelo index.html, senão acessar /sobre
-# direto pela URL devolve 404 no host estático.
+# Com o SSG cada rota vira um .html estático (sobre.html, servicos.html...),
+# que o host serve direto — esta regra não interfere neles, porque arquivo
+# existente tem precedência sobre redirect.
+# Ela cobre só o resto: uma URL desconhecida cai no index.html e o router
+# mostra a página 404 em vez do 404 genérico do host.
 # Lido por Netlify e Cloudflare Pages; inerte nos demais.
-# Vercel usa "rewrites" no vercel.json — o preset de Vite já faz isso.
 /*    /index.html   200

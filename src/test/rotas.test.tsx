@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter, useRoutes } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { routes } from "@/routes";
 
 /**
@@ -10,10 +11,14 @@ import { routes } from "@/routes";
  */
 const renderRoute = (path: string) => {
   const Routed = () => useRoutes(routes);
+  // Na aplicação real quem monta o HelmetProvider é o vite-react-ssg; aqui
+  // ele precisa ser montado à mão para o <Seo> de cada página funcionar.
   return render(
-    <MemoryRouter initialEntries={[path]}>
-      <Routed />
-    </MemoryRouter>,
+    <HelmetProvider>
+      <MemoryRouter initialEntries={[path]}>
+        <Routed />
+      </MemoryRouter>
+    </HelmetProvider>,
   );
 };
 
