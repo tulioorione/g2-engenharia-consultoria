@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import aboutImage from "@/assets/about-team.webp";
 import aboutImage640 from "@/assets/about-team-640.webp";
 
-export const About = () => {
+/** `compact` é a versão da home: só a chamada, com link para a página Sobre. */
+export const About = ({ compact = false }: { compact?: boolean }) => {
   return (
     <section id="sobre" className="relative bg-background py-24 md:py-32">
       <div className="container-cz grid gap-16 lg:grid-cols-2 lg:gap-24">
@@ -24,21 +26,32 @@ export const About = () => {
             A G2 Engenharia e Consultoria atua há mais de duas décadas projetando, supervisionando e
             entregando soluções técnicas para projetos de infraestrutura, indústria e mineração.
           </p>
-          <p className="mt-4 text-lg text-muted-foreground leading-relaxed max-w-xl">
-            Combinamos rigor de engenharia, gestão disciplinada e visão estratégica para transformar
-            cenários complexos em projetos viáveis, seguros e dentro do prazo.
-          </p>
+          {!compact && (
+            <p className="mt-4 text-lg text-muted-foreground leading-relaxed max-w-xl">
+              Combinamos rigor de engenharia, gestão disciplinada e visão estratégica para transformar
+              cenários complexos em projetos viáveis, seguros e dentro do prazo.
+            </p>
+          )}
 
-          <div className="mt-10 flex flex-wrap gap-x-12 gap-y-6 border-t border-border pt-8">
-            <div>
-              <div className="font-serif text-3xl text-primary">CREA</div>
-              <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground mt-1">Registro técnico ativo</div>
+          {compact ? (
+            <Link
+              to="/sobre"
+              className="mt-10 inline-flex items-center gap-3 self-start border-b border-primary pb-2 text-sm font-medium uppercase tracking-[0.15em] text-primary transition-all duration-500 hover:gap-5 hover:border-accent hover:text-accent"
+            >
+              Conheça a G2 →
+            </Link>
+          ) : (
+            <div className="mt-10 flex flex-wrap gap-x-12 gap-y-6 border-t border-border pt-8">
+              <div>
+                <div className="font-serif text-3xl text-primary">CREA</div>
+                <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground mt-1">Registro técnico ativo</div>
+              </div>
+              <div>
+                <div className="font-serif text-3xl text-primary">ISO 9001</div>
+                <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground mt-1">Gestão da qualidade</div>
+              </div>
             </div>
-            <div>
-              <div className="font-serif text-3xl text-primary">ISO 9001</div>
-              <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground mt-1">Gestão da qualidade</div>
-            </div>
-          </div>
+          )}
         </motion.div>
 
         <motion.div

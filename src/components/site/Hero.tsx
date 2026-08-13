@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-construction.webp";
 import hero1280 from "@/assets/hero-construction-1280.webp";
 import hero768 from "@/assets/hero-construction-768.webp";
@@ -15,9 +16,11 @@ export const Hero = () => {
           className="h-full w-full object-cover"
           width={1920}
           height={1080}
-          /* É o LCP da página: precisa sair na frente do resto. */
-          fetchPriority="high"
           decoding="async"
+          /* É o LCP da página: precisa sair na frente do resto.
+             O React 18 descarta `fetchPriority` em camelCase — só a forma
+             minúscula chega ao DOM —, e os tipos ainda não a conhecem. */
+          {...({ fetchpriority: "high" } as Record<string, string>)}
         />
         <div className="absolute inset-0 bg-gradient-hero-overlay" />
         <div className="absolute inset-0 bg-primary/30 mix-blend-multiply" />
@@ -58,19 +61,19 @@ export const Hero = () => {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="mt-12 flex flex-col gap-4 sm:flex-row"
         >
-          <a
-            href="#servicos"
+          <Link
+            to="/servicos"
             className="group inline-flex items-center justify-center gap-3 bg-primary-foreground px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-primary transition-all duration-500 hover:bg-silver-light hover:scale-[1.02]"
           >
             Conheça nossos serviços
             <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
-          </a>
-          <a
-            href="#contato"
+          </Link>
+          <Link
+            to="/contato"
             className="inline-flex items-center justify-center gap-3 border border-silver/50 px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-primary-foreground transition-all duration-500 hover:bg-silver/10 hover:border-silver"
           >
             Fale com um especialista
-          </a>
+          </Link>
         </motion.div>
       </div>
 

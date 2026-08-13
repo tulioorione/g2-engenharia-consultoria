@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import mining from "@/assets/project-mining.webp";
 import miningSm from "@/assets/project-mining-800.webp";
 import energy from "@/assets/project-energy.webp";
@@ -30,7 +31,14 @@ const projects = [
   },
 ];
 
-export const Projects = () => {
+/**
+ * `compact` é a versão da home: grade de 3 com imagem, setor e título, sem
+ * descrição — para não repetir na íntegra o conteúdo de /projetos, que o
+ * Google leria como página duplicada.
+ */
+export const Projects = ({ compact = false }: { compact?: boolean }) => {
+  if (compact) return <ProjectsCompact />;
+
   return (
     <section id="projetos" className="relative bg-background py-24 md:py-32">
       <div className="container-cz">
@@ -81,12 +89,12 @@ export const Projects = () => {
                 <div className="text-[11px] uppercase tracking-[0.25em] text-accent">{p.category}</div>
                 <h3 className="mt-4 text-3xl md:text-4xl text-primary leading-tight max-w-md">{p.title}</h3>
                 <p className="mt-6 text-muted-foreground leading-relaxed max-w-md">{p.desc}</p>
-                <a
-                  href="#contato"
+                <Link
+                  to="/contato"
                   className="mt-8 inline-flex items-center gap-3 text-sm font-medium uppercase tracking-[0.15em] text-primary border-b border-primary pb-2 transition-all duration-500 hover:text-accent hover:border-accent hover:gap-5"
                 >
-                  Ver projeto completo →
-                </a>
+                  Falar sobre um projeto assim →
+                </Link>
               </div>
             </motion.article>
           ))}
@@ -95,3 +103,63 @@ export const Projects = () => {
     </section>
   );
 };
+
+const ProjectsCompact = () => (
+  <section id="projetos" className="relative bg-background py-24 md:py-32">
+    <div className="container-cz">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+        className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
+      >
+        <div>
+          <div className="eyebrow text-accent mb-6">
+            <span className="inline-block h-px w-8 bg-accent" />
+            Projetos em destaque
+          </div>
+          <h2 className="max-w-3xl text-4xl text-primary md:text-5xl lg:text-[56px] leading-[1.05]">
+            O que entregamos <span className="font-serif italic font-light">fala por si.</span>
+          </h2>
+        </div>
+        <Link
+          to="/projetos"
+          className="inline-flex shrink-0 items-center gap-3 border-b border-primary pb-2 text-sm font-medium uppercase tracking-[0.15em] text-primary transition-all duration-500 hover:gap-5 hover:border-accent hover:text-accent"
+        >
+          Ver todos →
+        </Link>
+      </motion.div>
+
+      <div className="grid gap-8 md:grid-cols-3">
+        {projects.map((p, i) => (
+          <motion.article
+            key={p.title}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            className="group relative"
+          >
+            <div className="aspect-[4/3] overflow-hidden bg-muted">
+              <img
+                src={p.imageSm}
+                srcSet={`${p.imageSm} 800w, ${p.image} 1600w`}
+                sizes="(min-width: 768px) 33vw, 100vw"
+                alt={p.title}
+                loading="lazy"
+                decoding="async"
+                width={1600}
+                height={1067}
+                className="h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
+              />
+            </div>
+            <div className="mt-5 text-[11px] uppercase tracking-[0.25em] text-accent">{p.category}</div>
+            <h3 className="mt-3 text-xl text-primary leading-snug">{p.title}</h3>
+            <Link to="/projetos" className="absolute inset-0" aria-label={`Ver o projeto ${p.title}`} />
+          </motion.article>
+        ))}
+      </div>
+    </div>
+  </section>
+);

@@ -1,20 +1,18 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
-
-const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Sobre", href: "#sobre" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "Projetos", href: "#projetos" },
-  { label: "Setores", href: "#setores" },
-  { label: "Contato", href: "#contato" },
-];
+import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "@/components/NavLink";
+import { mainNav } from "@/routes";
 
 export const Header = () => {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const height = useTransform(scrollY, [0, 120], [88, 64]);
+  const { pathname } = useLocation();
+
+  // Fecha o menu mobile ao navegar, senão ele fica aberto por cima da página nova.
+  useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
     return scrollY.on("change", (v) => setScrolled(v > 24));
@@ -39,7 +37,7 @@ export const Header = () => {
       }`}
     >
       <div className="container-cz flex h-full items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 text-primary-foreground" aria-label="G2 Engenharia">
+        <Link to="/" className="flex items-center gap-2 text-primary-foreground" aria-label="G2 Engenharia — início">
           <div className="flex h-9 w-9 items-center justify-center border border-silver/40 bg-gradient-silver text-primary font-serif text-lg font-medium">
             G2
           </div>
@@ -47,23 +45,28 @@ export const Header = () => {
             <span className="text-sm font-semibold tracking-tight">G2 Engenharia</span>
             <span className="text-[10px] uppercase tracking-[0.2em] text-silver">Consultoria</span>
           </div>
-        </a>
+        </Link>
 
-        <nav className="hidden items-center gap-9 lg:flex">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="nav-link text-primary-foreground/90 hover:text-primary-foreground">
+        <nav className="hidden items-center gap-9 lg:flex" aria-label="Navegação principal">
+          {mainNav.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className="nav-link text-primary-foreground/90 hover:text-primary-foreground"
+              activeClassName="text-primary-foreground after:w-full"
+            >
               {item.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href="#contato"
+          <Link
+            to="/contato"
             className="hidden border border-silver/40 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.15em] text-primary-foreground transition-all duration-500 hover:bg-silver/10 hover:border-silver md:inline-block"
           >
             Solicitar Orçamento
-          </a>
+          </Link>
           <button
             className="lg:hidden text-primary-foreground"
             onClick={() => setOpen(!open)}
@@ -82,21 +85,24 @@ export const Header = () => {
 
       {open && (
         <div id="menu-mobile" className="lg:hidden bg-primary-deep border-t border-silver/10">
-          <div className="container-cz flex flex-col gap-1 py-4">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
+          <nav className="container-cz flex flex-col gap-1 py-4" aria-label="Navegação principal">
+            {mainNav.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
                 className="py-3 text-sm text-primary-foreground/90 hover:text-accent"
+                activeClassName="text-accent"
               >
                 {item.label}
-              </a>
+              </NavLink>
             ))}
-            <a href="#contato" onClick={() => setOpen(false)} className="mt-2 border border-silver/40 px-5 py-3 text-center text-xs uppercase tracking-[0.15em] text-primary-foreground">
+            <Link
+              to="/contato"
+              className="mt-2 border border-silver/40 px-5 py-3 text-center text-xs uppercase tracking-[0.15em] text-primary-foreground"
+            >
               Solicitar Orçamento
-            </a>
-          </div>
+            </Link>
+          </nav>
         </div>
       )}
     </motion.header>

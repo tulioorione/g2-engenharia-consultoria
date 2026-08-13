@@ -1,30 +1,9 @@
 import { motion } from "framer-motion";
-import { Compass, ClipboardList, BarChart3, HardHat } from "lucide-react";
+import { Link } from "react-router-dom";
+import { servicos as services } from "@/config/servicos";
 
-const services = [
-  {
-    icon: Compass,
-    title: "Consultoria em Engenharia",
-    desc: "Pareceres técnicos, due diligence e suporte especializado em decisões críticas de projeto.",
-  },
-  {
-    icon: ClipboardList,
-    title: "Gestão de Projetos",
-    desc: "Planejamento integrado, controle de prazos, custos e escopo do conceito à entrega.",
-  },
-  {
-    icon: BarChart3,
-    title: "Estudos de Viabilidade",
-    desc: "Análise técnica, econômica e ambiental para fundamentar investimentos com segurança.",
-  },
-  {
-    icon: HardHat,
-    title: "Supervisão de Obras",
-    desc: "Fiscalização rigorosa em campo, garantindo qualidade, segurança e conformidade.",
-  },
-];
-
-export const Services = () => {
+/** `compact` é a versão da home: os 4 cards + link para a página de serviços. */
+export const Services = ({ compact = false }: { compact?: boolean }) => {
   return (
     <section id="servicos" className="relative bg-gradient-navy-radial py-24 md:py-32">
       <div className="container-cz">
@@ -51,14 +30,15 @@ export const Services = () => {
 
         <div className="mt-16 grid gap-px bg-silver/10 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
-            <motion.a
-              href="#contato"
+            <motion.div
               key={s.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative flex flex-col bg-primary-deep p-8 transition-all duration-500 hover:bg-primary-steel hover:-translate-y-1"
+              className={`group relative flex flex-col bg-primary-deep p-8 transition-all duration-500 ${
+                compact ? "hover:bg-primary-steel hover:-translate-y-1" : ""
+              }`}
             >
               <s.icon
                 className="h-8 w-8 text-silver transition-all duration-500 group-hover:text-accent group-hover:rotate-[-6deg]"
@@ -66,14 +46,36 @@ export const Services = () => {
               />
               <h3 className="mt-8 text-xl text-primary-foreground">{s.title}</h3>
               <p className="mt-3 text-sm text-primary-foreground/65 leading-relaxed flex-1">{s.desc}</p>
-              <div className="mt-8 flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-silver group-hover:text-accent transition-colors duration-500">
-                Saiba mais
-                <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
-              </div>
+              {compact && (
+                <>
+                  <div className="mt-8 flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-silver transition-colors duration-500 group-hover:text-accent">
+                    Saiba mais
+                    <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+                  </div>
+                  {/* Link esticado: o card inteiro clica, sem trocar o elemento
+                      e sem perder as animações do motion.div. */}
+                  <Link
+                    to="/servicos"
+                    className="absolute inset-0"
+                    aria-label={`Saiba mais sobre ${s.title}`}
+                  />
+                </>
+              )}
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-silver/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            </motion.a>
+            </motion.div>
           ))}
         </div>
+
+        {compact && (
+          <div className="mt-12">
+            <Link
+              to="/servicos"
+              className="inline-flex items-center gap-3 border-b border-silver/60 pb-2 text-sm font-medium uppercase tracking-[0.15em] text-primary-foreground transition-all duration-500 hover:gap-5 hover:border-accent hover:text-accent"
+            >
+              Ver todos os serviços →
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
