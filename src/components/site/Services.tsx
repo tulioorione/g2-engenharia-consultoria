@@ -48,7 +48,7 @@ export const Services = ({ compact = false }: { compact?: boolean }) => {
               }`}
             >
               <s.icon
-                className="h-8 w-8 text-silver transition-all duration-500 group-hover:text-accent group-hover:rotate-[-6deg]"
+                className="h-8 w-8 text-silver transition-all duration-500 group-hover:text-accent-on-dark group-hover:rotate-[-6deg]"
                 strokeWidth={1.25}
               />
               <h3 className="mt-8 text-xl text-primary-foreground">{s.title}</h3>
@@ -85,7 +85,7 @@ export const Services = ({ compact = false }: { compact?: boolean }) => {
 
               {compact && (
                 <>
-                  <div className="mt-8 flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-silver transition-colors duration-500 group-hover:text-accent">
+                  <div className="mt-8 flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-silver transition-colors duration-500 group-hover:text-accent-on-dark">
                     Saiba mais
                     <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
                   </div>
@@ -107,7 +107,7 @@ export const Services = ({ compact = false }: { compact?: boolean }) => {
           <div className="mt-12">
             <Link
               to="/servicos"
-              className="inline-flex items-center gap-3 border-b border-silver/60 pb-2 text-sm font-medium uppercase tracking-[0.15em] text-primary-foreground transition-all duration-500 hover:gap-5 hover:border-accent hover:text-accent"
+              className="inline-flex items-center gap-3 border-b border-silver/60 pb-2 text-sm font-medium uppercase tracking-[0.15em] text-primary-foreground transition-all duration-500 hover:gap-5 hover:border-accent-on-dark hover:text-accent-on-dark"
             >
               Ver todos os serviços →
             </Link>

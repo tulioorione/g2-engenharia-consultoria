@@ -6,7 +6,7 @@ export const FinalCTA = () => {
     <section className="relative bg-primary py-28 md:py-40 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-navy-radial opacity-80" />
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-on-dark/10 blur-[120px]" />
       </div>
 
       <div className="container-cz relative">

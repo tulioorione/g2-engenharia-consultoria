@@ -25,8 +25,17 @@
     --primary-deep: 215 40% 18%;        /* #1B2A3F */
     --primary-steel: 210 29% 24%;       /* #2C3E50 */
 
-    /* Accent — cyan steel */
-    --accent: 203 44% 51%;              /* #4A90B8 */
+    /* Accent — cyan steel.
+       O #4A90B8 original (L=51%) reprovava em AA nos dois fundos: 3,39:1 sobre
+       o claro e 4,04:1 sobre o navy. Nenhuma luminosidade única passa nos dois,
+       então são dois tokens — mesma matiz e saturação, só a luminosidade muda,
+       o que preserva a identidade da marca.
+       --accent         L=40%  5,10:1 no claro · 4,65:1 no secondary
+       --accent-on-dark L=56%  5,70:1 no primary · 4,69:1 no primary-deep
+       --ring           L=48%  ≥3:1 em TODOS os fundos (anel de foco é
+                               elemento não-textual: exige 3:1, não 4,5:1) */
+    --accent: 203 44% 40%;
+    --accent-on-dark: 203 44% 56%;
     --accent-foreground: 210 25% 97%;
 
     /* Silver / metallic */
@@ -44,7 +53,7 @@
 
     --border: 210 18% 88%;
     --input: 210 18% 88%;
-    --ring: 203 44% 51%;
+    --ring: 203 44% 48%;
 
     --radius: 0.25rem;
 
@@ -97,9 +106,11 @@
   section[id] {
     scroll-margin-top: 6rem;
   }
-  /* O outline padrão do browser some sobre o navy escuro. */
+  /* O outline padrão do browser some sobre o navy escuro. Usa --ring, que é a
+     única luminosidade que passa 3:1 tanto nos fundos claros quanto nos escuros
+     — o site alterna entre os dois e o foco precisa aparecer em ambos. */
   :focus-visible {
-    outline: 2px solid hsl(var(--accent));
+    outline: 2px solid hsl(var(--ring));
     outline-offset: 3px;
   }
   .font-serif {

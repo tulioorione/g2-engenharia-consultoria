@@ -50,8 +50,8 @@ export const Process = () => {
             transition={{ duration: 0.7 }}
             className="mb-12 md:mb-20"
           >
-            <div className="eyebrow text-accent mb-6">
-              <span className="inline-block h-px w-8 bg-accent" />
+            <div className="eyebrow text-accent-on-dark mb-6">
+              <span className="inline-block h-px w-8 bg-accent-on-dark" />
               Como trabalhamos
             </div>
             <h2 className="max-w-3xl text-4xl md:text-5xl lg:text-[56px] leading-[1.05]">
@@ -65,7 +65,7 @@ export const Process = () => {
               <div className="absolute inset-y-0 w-px bg-silver/15" />
               <motion.div
                 style={{ height: lineHeight }}
-                className="absolute top-0 w-px bg-gradient-to-b from-accent via-silver to-silver/30"
+                className="absolute top-0 w-px bg-gradient-to-b from-accent-on-dark via-silver to-silver/30"
               />
             </div>
 

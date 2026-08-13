@@ -90,8 +90,8 @@ export const Header = () => {
               <NavLink
                 key={item.to}
                 to={item.to}
-                className="py-3 text-sm text-primary-foreground/90 hover:text-accent"
-                activeClassName="text-accent"
+                className="py-3 text-sm text-primary-foreground/90 hover:text-accent-on-dark"
+                activeClassName="text-accent-on-dark"
               >
                 {item.label}
               </NavLink>

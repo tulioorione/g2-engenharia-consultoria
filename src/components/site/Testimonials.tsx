@@ -93,7 +93,7 @@ export const Testimonials = () => {
             >
               <span
                 className={`block h-px transition-all duration-500 ${
-                  idx === i ? "w-12 bg-accent" : "w-6 bg-silver/30 group-hover:bg-silver/60"
+                  idx === i ? "w-12 bg-accent-on-dark" : "w-6 bg-silver/30 group-hover:bg-silver/60"
                 }`}
               />
             </button>

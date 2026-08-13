@@ -41,12 +41,12 @@ export const Footer = () => {
             <ul className="space-y-3 text-sm text-primary-foreground/70">
               <li>{contato.endereco}</li>
               <li>
-                <a className="hover:text-accent transition-colors" href={contato.telefoneHref}>
+                <a className="hover:text-accent-on-dark transition-colors" href={contato.telefoneHref}>
                   {contato.telefoneExibido}
                 </a>
               </li>
               <li>
-                <a className="hover:text-accent transition-colors" href={`mailto:${contato.email}`}>
+                <a className="hover:text-accent-on-dark transition-colors" href={`mailto:${contato.email}`}>
                   {contato.email}
                 </a>
               </li>
@@ -58,7 +58,7 @@ export const Footer = () => {
                       href={r.href}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="hover:text-accent transition-colors text-xs uppercase tracking-[0.15em]"
+                      className="hover:text-accent-on-dark transition-colors text-xs uppercase tracking-[0.15em]"
                     >
                       {r.label}
                     </a>
@@ -92,7 +92,7 @@ const FooterCol = ({
     <ul className="space-y-3 text-sm text-primary-foreground/70">
       {links.map((l) => (
         <li key={l.label}>
-          <Link to={l.to} className="hover:text-accent transition-colors">
+          <Link to={l.to} className="hover:text-accent-on-dark transition-colors">
             {l.label}
           </Link>
         </li>

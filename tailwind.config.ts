@@ -34,6 +34,8 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          // Use text-accent-on-dark em seções de fundo navy; text-accent nas claras.
+          "on-dark": "hsl(var(--accent-on-dark))",
         },
         silver: {
           DEFAULT: "hsl(var(--silver))",
