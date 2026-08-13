@@ -1,6 +1,6 @@
-# CZ Engineering Elevate
+# G2 Engenharia e Consultoria
 
-Crie um site institucional premium para "CZ Engenharia e Consultoria", uma empresa brasileira que oferece serviços de engenharia e consultoria. O tagline da empresa é: "Transformando desafios em resultados concretos."
+Crie um site institucional premium para "G2 Engenharia e Consultoria", uma empresa brasileira que oferece serviços de engenharia e consultoria. O tagline da empresa é: "Transformando desafios em resultados concretos."
 
 === REFERÊNCIA VISUAL PRINCIPAL ===
 
@@ -38,7 +38,7 @@ TIPOGRAFIA:
 
 1. HEADER FIXO (fica no topo ao rolar)
 
-- Logo CZ à esquerda
+- Logo G2 à esquerda
 
 - Menu central: Home | Sobre | Serviços | Projetos | Setores | Contato
 

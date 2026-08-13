@@ -20,7 +20,7 @@ export const About = () => {
             Engenharia <span className="font-serif italic font-light">que resolve.</span>
           </h2>
           <p className="mt-8 text-lg text-muted-foreground leading-relaxed max-w-xl">
-            A CZ Engenharia e Consultoria atua há mais de duas décadas projetando, supervisionando e
+            A G2 Engenharia e Consultoria atua há mais de duas décadas projetando, supervisionando e
             entregando soluções técnicas para projetos de infraestrutura, indústria e mineração.
           </p>
           <p className="mt-4 text-lg text-muted-foreground leading-relaxed max-w-xl">

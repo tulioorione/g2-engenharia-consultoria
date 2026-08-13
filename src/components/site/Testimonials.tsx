@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 const testimonials = [
   {
     quote:
-      "A CZ entrou em um momento crítico do projeto e reorganizou o cronograma com uma clareza que não tínhamos visto antes. Entregaram exatamente o que prometeram.",
+      "A G2 entrou em um momento crítico do projeto e reorganizou o cronograma com uma clareza que não tínhamos visto antes. Entregaram exatamente o que prometeram.",
     name: "Ricardo Almeida",
     role: "Diretor de Operações",
     company: "Mineração Serra Verde",
   },
   {
     quote:
-      "Equipe técnica de altíssimo nível. O estudo de viabilidade feito pela CZ foi a base para a aprovação do investimento na nossa diretoria.",
+      "Equipe técnica de altíssimo nível. O estudo de viabilidade feito pela G2 foi a base para a aprovação do investimento na nossa diretoria.",
     name: "Patricia Lemos",
     role: "Gerente de Engenharia",
     company: "Grupo Andrade Infra",
@@ -40,7 +40,7 @@ export const Testimonials = () => {
       <div className="container-cz">
         <div className="eyebrow text-silver mb-12">
           <span className="inline-block h-px w-8 bg-silver" />
-          Confiam na CZ
+          Confiam na G2
         </div>
 
         <div className="relative min-h-[280px] max-w-4xl">

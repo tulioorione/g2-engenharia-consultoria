@@ -24,7 +24,7 @@ export const Hero = () => {
           className="eyebrow text-silver mb-8"
         >
           <span className="inline-block h-px w-8 bg-silver" />
-          CZ Engenharia e Consultoria
+          G2 Engenharia e Consultoria
         </motion.div>
 
         <motion.h1

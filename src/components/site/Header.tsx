@@ -30,12 +30,12 @@ export const Header = () => {
       }`}
     >
       <div className="container-cz flex h-full items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 text-primary-foreground" aria-label="CZ Engenharia">
+        <a href="#home" className="flex items-center gap-2 text-primary-foreground" aria-label="G2 Engenharia">
           <div className="flex h-9 w-9 items-center justify-center border border-silver/40 bg-gradient-silver text-primary font-serif text-lg font-medium">
-            CZ
+            G2
           </div>
           <div className="hidden flex-col leading-tight sm:flex">
-            <span className="text-sm font-semibold tracking-tight">CZ Engenharia</span>
+            <span className="text-sm font-semibold tracking-tight">G2 Engenharia</span>
             <span className="text-[10px] uppercase tracking-[0.2em] text-silver">Consultoria</span>
           </div>
         </a>

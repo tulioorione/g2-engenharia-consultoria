@@ -6,10 +6,10 @@ export const Footer = () => {
           <div>
             <div className="flex items-center gap-2">
               <div className="flex h-9 w-9 items-center justify-center border border-silver/40 bg-gradient-silver text-primary font-serif text-lg">
-                CZ
+                G2
               </div>
               <div className="leading-tight">
-                <div className="text-sm font-semibold">CZ Engenharia</div>
+                <div className="text-sm font-semibold">G2 Engenharia</div>
                 <div className="text-[10px] uppercase tracking-[0.2em] text-silver">Consultoria</div>
               </div>
             </div>
@@ -31,7 +31,7 @@ export const Footer = () => {
             <ul className="space-y-3 text-sm text-primary-foreground/70">
               <li>Av. Engenharia, 1000 — Belo Horizonte / MG</li>
               <li><a className="hover:text-accent transition-colors" href="tel:+553100000000">+55 (31) 0000-0000</a></li>
-              <li><a className="hover:text-accent transition-colors" href="mailto:contato@czengenharia.com.br">contato@czengenharia.com.br</a></li>
+              <li><a className="hover:text-accent transition-colors" href="mailto:contato@g2engenharia.com.br">contato@g2engenharia.com.br</a></li>
               <li className="flex gap-4 pt-2">
                 <a href="#" className="hover:text-accent transition-colors text-xs uppercase tracking-[0.15em]">LinkedIn</a>
                 <a href="#" className="hover:text-accent transition-colors text-xs uppercase tracking-[0.15em]">Instagram</a>
@@ -41,7 +41,7 @@ export const Footer = () => {
         </div>
 
         <div className="mt-16 border-t border-silver/10 pt-8 flex flex-col gap-3 md:flex-row md:items-center md:justify-between text-xs text-primary-foreground/50">
-          <div>© {new Date().getFullYear()} CZ Engenharia e Consultoria · CNPJ 00.000.000/0001-00</div>
+          <div>© {new Date().getFullYear()} G2 Engenharia e Consultoria · CNPJ 00.000.000/0001-00</div>
           <div>Todos os direitos reservados.</div>
         </div>
       </div>
