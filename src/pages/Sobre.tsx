@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/site/PageHeader";
 import { About } from "@/components/site/About";
+import { Team } from "@/components/site/Team";
 import { Sectors } from "@/components/site/Sectors";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { Seo } from "@/components/site/Seo";
@@ -18,6 +19,7 @@ const Sobre = () => (
       intro="Rigor técnico, gestão disciplinada e visão estratégica aplicados a projetos de infraestrutura, indústria e mineração."
     />
     <About />
+    <Team />
     <Sectors />
     <FinalCTA />
   </>
