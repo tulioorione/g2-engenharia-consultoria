@@ -82,7 +82,7 @@ export const Projects = ({ compact = false }: { compact?: boolean }) => {
                   decoding="async"
                   width={1600}
                   height={1067}
-                  className="h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
+                  className="h-full w-full object-cover transition-transform [transition-duration:800ms] ease-out group-hover:scale-[1.04]"
                 />
               </div>
               <div className="lg:px-4">
@@ -151,7 +151,7 @@ const ProjectsCompact = () => (
                 decoding="async"
                 width={1600}
                 height={1067}
-                className="h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
+                className="h-full w-full object-cover transition-transform [transition-duration:800ms] ease-out group-hover:scale-[1.04]"
               />
             </div>
             <div className="mt-5 text-[11px] uppercase tracking-[0.25em] text-accent">{p.category}</div>

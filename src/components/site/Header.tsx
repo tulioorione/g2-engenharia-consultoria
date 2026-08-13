@@ -60,12 +60,17 @@ export const Header = () => {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Antes este CTA era `hidden md:inline-block`: no celular — de onde
+              vem a maior parte do tráfego — o botão principal de conversão só
+              existia dentro do hambúrguer. Agora aparece sempre, encurtado nas
+              telas estreitas para caber ao lado do menu. */}
           <Link
             to="/contato"
-            className="hidden border border-silver/40 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.15em] text-primary-foreground transition-all duration-500 hover:bg-silver/10 hover:border-silver md:inline-block"
+            className="border border-silver/40 px-3 py-2 text-[10px] font-medium uppercase tracking-[0.12em] text-primary-foreground transition-all duration-500 hover:bg-silver/10 hover:border-silver sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-[0.15em]"
           >
-            Solicitar Orçamento
+            <span className="sm:hidden">Orçamento</span>
+            <span className="hidden sm:inline">Solicitar Orçamento</span>
           </Link>
           <button
             className="lg:hidden text-primary-foreground"
@@ -96,12 +101,6 @@ export const Header = () => {
                 {item.label}
               </NavLink>
             ))}
-            <Link
-              to="/contato"
-              className="mt-2 border border-silver/40 px-5 py-3 text-center text-xs uppercase tracking-[0.15em] text-primary-foreground"
-            >
-              Solicitar Orçamento
-            </Link>
           </nav>
         </div>
       )}

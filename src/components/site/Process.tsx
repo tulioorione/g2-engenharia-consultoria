@@ -39,9 +39,17 @@ export const Process = () => {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const lineHeight = useTransform(scrollYProgress, [0, 0.95], ["0%", "100%"]);
 
+  // O sticky de 300vh só vale a partir do md. No celular ele prendia a tela por
+  // três telas de rolagem, sem a linha de progresso (que é hidden md:flex) e com
+  // o conteúdo cortado pelo overflow-hidden dentro de um h-screen. Abaixo do md
+  // as etapas simplesmente empilham e rolam normalmente.
   return (
-    <section id="processo" ref={ref} className="relative bg-primary text-primary-foreground" style={{ height: "300vh" }}>
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+    <section
+      id="processo"
+      ref={ref}
+      className="relative bg-primary text-primary-foreground md:h-[300vh]"
+    >
+      <div className="flex items-center py-24 md:sticky md:top-0 md:h-screen md:overflow-hidden md:py-0">
         <div className="container-cz w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -105,7 +113,14 @@ const Step = ({
   const y = useTransform(progress, [a, Math.max(a, b)], [20, 0]);
 
   return (
-    <motion.div style={{ opacity, y }} className="grid grid-cols-[auto_1fr] gap-6 md:gap-10 items-start">
+    // As classes com "!" abaixo do md anulam o style inline do framer-motion:
+    // sem o sticky não há progresso de rolagem, e as etapas ficariam presas na
+    // opacidade inicial de 0.25. Resolver por CSS em vez de JS mantém correto
+    // também no HTML pré-renderizado, antes da hidratação.
+    <motion.div
+      style={{ opacity, y }}
+      className="grid grid-cols-[auto_1fr] items-start gap-6 max-md:!transform-none max-md:!opacity-100 md:gap-10"
+    >
       <div className="font-serif text-5xl md:text-7xl text-silver-light/90 leading-none">{step.n}</div>
       <div className="pt-2 md:pt-4">
         <h3 className="text-2xl md:text-3xl">{step.title}</h3>
