@@ -172,6 +172,27 @@
   .hairline {
     background: linear-gradient(90deg, transparent, hsl(var(--silver) / 0.6), transparent);
   }
+
+  /* Única animação ambiente do site: a foto do hero avança devagar, como uma
+     câmera empurrando. É movimento de cinema, não de web — passa no teste de
+     "isso se moveria no mundo real?", que é o critério para animação ambiente
+     não virar enfeite.
+     `alternate` faz ida e volta, então o laço não tem emenda visível.
+     Só transform, que roda no compositor e não entra na conta do INP. */
+  @keyframes avanco-lento {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.07);
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .avanco-lento {
+      animation: avanco-lento 28s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

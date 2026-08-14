@@ -15,7 +15,7 @@ export const Hero = () => {
           srcSet={`${hero768} 768w, ${hero1280} 1280w, ${heroImage} 1920w`}
           sizes="100vw"
           alt="Equipe de engenharia conferindo medições em campo, com equipamento topográfico"
-          className="h-full w-full object-cover"
+          className="avanco-lento h-full w-full object-cover"
           width={1920}
           height={1281}
           decoding="async"
