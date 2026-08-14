@@ -37,7 +37,9 @@ const Contato = () => (
 
     <section className="relative bg-background py-24 md:py-32">
       <div className="container-cz">
-        <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+        {/* São 4 canais (os dois sócios, e-mail e endereço). Em 3 colunas o
+            quarto ficava sozinho numa segunda linha. */}
+        <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
           {canais.map((c, i) => (
             <motion.div
               key={c.label}

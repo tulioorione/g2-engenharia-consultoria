@@ -16,21 +16,28 @@ export const About = ({ compact = false }: { compact?: boolean }) => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col justify-center"
         >
-          <div className="eyebrow text-accent mb-6">
-            <span className="inline-block h-px w-8 bg-accent" />
-            Quem somos
-          </div>
-          <h2 className="text-4xl text-primary md:text-5xl lg:text-[56px] leading-[1.05]">
-            Engenharia <span className="font-display italic">que resolve.</span>
-          </h2>
+          {/* Só na home. Em /sobre o PageHeader já traz este mesmo eyebrow e
+              este mesmo título — repetir aqui criava um h2 idêntico ao h1
+              logo abaixo dele. */}
+          {compact && (
+            <>
+              <div className="eyebrow text-accent mb-6">
+                <span className="inline-block h-px w-8 bg-accent" />
+                Quem somos
+              </div>
+              <h2 className="text-4xl leading-[1.05] text-primary md:text-5xl lg:text-[56px]">
+                Engenharia <span className="font-display italic">que resolve.</span>
+              </h2>
+            </>
+          )}
 
           {/* Texto da apresentação institucional da G2 (página 2). */}
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
             {institucional.quemSomos}
           </p>
 
           {!compact && (
-            <div className="mt-10 border-l-2 border-accent pl-6">
+            <div className="mt-8 border-l-2 border-accent pl-6">
               <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
                 Nossa missão
               </div>

@@ -13,32 +13,36 @@ export const Services = ({ compact = false }: { compact?: boolean }) => {
   return (
     <section id="servicos" className="relative bg-gradient-navy-radial py-24 md:py-32">
       <div className="container-cz">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end"
-        >
-          <div>
-            <div className="eyebrow mb-6 text-silver">
-              <span className="inline-block h-px w-8 bg-silver" />
-              O que fazemos
+        {/* Só na home. Em /servicos o PageHeader já traz este título e esta
+            mesma introdução — repetir aqui gerava um h2 igual ao h1 acima. */}
+        {compact && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end"
+          >
+            <div>
+              <div className="eyebrow mb-6 text-silver">
+                <span className="inline-block h-px w-8 bg-silver" />
+                O que fazemos
+              </div>
+              <h2 className="max-w-3xl text-4xl leading-[1.05] text-primary-foreground md:text-5xl lg:text-[56px]">
+                Da execução ao{" "}
+                <span className="font-display italic text-silver-light">
+                  gerenciamento da sua obra.
+                </span>
+              </h2>
             </div>
-            <h2 className="max-w-3xl text-4xl leading-[1.05] text-primary-foreground md:text-5xl lg:text-[56px]">
-              Da execução ao{" "}
-              <span className="font-display italic text-silver-light">
-                gerenciamento da sua obra.
-              </span>
-            </h2>
-          </div>
-          <p className="max-w-sm text-primary-foreground/70">
-            Duas frentes que se conversam: quem levanta a parede e quem controla o orçamento
-            trabalham na mesma equipe.
-          </p>
-        </motion.div>
+            <p className="max-w-sm text-primary-foreground/70">
+              Duas frentes que se conversam: quem levanta a parede e quem controla o orçamento
+              trabalham na mesma equipe.
+            </p>
+          </motion.div>
+        )}
 
-        <div className="mt-16 space-y-16">
+        <div className={`space-y-16 ${compact ? "mt-16" : ""}`}>
           {grupos.map((grupo) => {
             const doGrupo = servicos.filter((s) => s.grupo === grupo.id);
             return (
@@ -54,9 +58,13 @@ export const Services = ({ compact = false }: { compact?: boolean }) => {
                   <p className="max-w-md text-sm text-primary-foreground/60">{grupo.resumo}</p>
                 </motion.div>
 
+                {/* Cada grupo forma uma linha cheia: execução tem 3 serviços e
+                    gestão tem 4. Antes o grupo de 4 parava em 2 colunas, então
+                    no desktop um grupo aparecia com 3 cards e o outro com 2
+                    fileiras de 2 — larguras diferentes e uma quebra estranha. */}
                 <div
-                  className={`mt-px grid gap-px bg-silver/10 ${
-                    doGrupo.length === 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"
+                  className={`mt-px grid gap-px bg-silver/10 sm:grid-cols-2 ${
+                    doGrupo.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"
                   }`}
                 >
                   {doGrupo.map((s, i) => (

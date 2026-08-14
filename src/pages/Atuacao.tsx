@@ -1,6 +1,5 @@
 import { PageHeader } from "@/components/site/PageHeader";
 import { Atuacao } from "@/components/site/Atuacao";
-import { Desafio } from "@/components/site/Desafio";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { motion } from "framer-motion";
 import { Seo } from "@/components/site/Seo";
@@ -42,7 +41,8 @@ const AtuacaoPage = () => (
       />
     </motion.div>
 
-    <Desafio />
+    {/* O bloco "desafio do cliente / solução G2" fica só na home, onde
+        apresenta o problema logo depois do hero. Aqui era repetição. */}
     <FinalCTA />
   </>
 );

@@ -34,7 +34,14 @@ export const Team = () => {
           </p>
         </motion.div>
 
-        <div className="grid gap-px bg-border md:grid-cols-3">
+        {/* O número de colunas acompanha a quantidade de sócios: com 2 pessoas
+            num grid de 3, sobrava uma célula vazia — e como o espaçamento é
+            gap-px sobre bg-border, o vazio aparecia como um bloco cinza. */}
+        <div
+          className={`grid gap-px bg-border ${
+            equipe.length >= 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"
+          }`}
+        >
           {equipe.map((p, i) => (
             <motion.article
               key={p.nome}
