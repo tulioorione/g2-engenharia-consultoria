@@ -29,6 +29,9 @@ describe("rotas", () => {
     ["/sobre", "Engenharia"],
     ["/servicos", "Da execução ao"],
     ["/atuacao", "Onde a engenharia"],
+    ["/atuacao/residencial", "Reforma e construção"],
+    ["/atuacao/comercial", "Adequação de ponto comercial"],
+    ["/atuacao/condominios", "Manutenção predial"],
     ["/contato", "Vamos tirar seu projeto"],
   ])("renderiza %s com o título esperado", (path, titulo) => {
     renderRoute(path);
@@ -66,6 +69,28 @@ describe("rotas", () => {
     const links = within(lista).getAllByRole("link");
     expect(links).toHaveLength(2);
     links.forEach((a) => expect(a.getAttribute("href")).toMatch(/^https:\/\/wa\.me\/55\d{10,}$/));
+  });
+
+  it("o submenu de atuação leva a três páginas que existem de verdade", () => {
+    renderRoute("/");
+    const nav = screen.getAllByRole("navigation", { name: /navegação principal/i })[0];
+    const destinos = within(nav)
+      .getAllByRole("link")
+      .map((a) => a.getAttribute("href"))
+      .filter((h): h is string => !!h?.startsWith("/atuacao/"));
+    expect(destinos).toHaveLength(3);
+    // Cada destino do menu tem de ser uma rota registrada — menu com submenu
+    // promete subpágina, e prometer sem entregar foi o erro da versão anterior.
+    const registradas = routes[0].children?.map((r) => `/${r.path}`) ?? [];
+    destinos.forEach((d) => expect(registradas).toContain(d));
+  });
+
+  it("filtra as perguntas do FAQ pela área da página", () => {
+    renderRoute("/atuacao/comercial");
+    // A pergunta do síndico é de condomínios; não deve aparecer no comercial.
+    expect(screen.queryByText(/sou síndico/i)).not.toBeInTheDocument();
+    renderRoute("/atuacao/condominios");
+    expect(screen.getAllByText(/sou síndico/i).length).toBeGreaterThan(0);
   });
 
   it("não deixa nenhum link apontando para href vazio", () => {

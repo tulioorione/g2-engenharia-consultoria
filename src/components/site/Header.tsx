@@ -2,7 +2,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { NavLink } from "@/components/NavLink";
+import { MenuAtuacao } from "@/components/site/MenuAtuacao";
 import { mainNav } from "@/routes";
+import { areasAtuacao } from "@/config/atuacao";
 import logoClaro from "@/assets/g2-logo-claro.webp";
 import simboloClaro from "@/assets/g2-simbolo-claro.webp";
 
@@ -61,16 +63,20 @@ export const Header = () => {
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Navegação principal">
-          {mainNav.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className="nav-link text-primary-foreground/90 hover:text-primary-foreground"
-              activeClassName="text-primary-foreground after:w-full"
-            >
-              {item.label}
-            </NavLink>
-          ))}
+          {mainNav.map((item) =>
+            item.to === "/atuacao" ? (
+              <MenuAtuacao key={item.to} />
+            ) : (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className="nav-link text-primary-foreground/90 hover:text-primary-foreground"
+                activeClassName="text-primary-foreground after:w-full"
+              >
+                {item.label}
+              </NavLink>
+            ),
+          )}
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
@@ -105,14 +111,31 @@ export const Header = () => {
         <div id="menu-mobile" className="lg:hidden bg-primary-deep border-t border-silver/10">
           <nav className="container-cz flex flex-col gap-1 py-4" aria-label="Navegação principal">
             {mainNav.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className="py-3 text-sm text-primary-foreground/90 hover:text-accent-on-dark"
-                activeClassName="text-accent-on-dark"
-              >
-                {item.label}
-              </NavLink>
+              <div key={item.to}>
+                <NavLink
+                  to={item.to}
+                  className="block py-3 text-sm text-primary-foreground/90 hover:text-accent-on-dark"
+                  activeClassName="text-accent-on-dark"
+                >
+                  {item.label}
+                </NavLink>
+                {/* No celular não existe hover: as três áreas ficam listadas
+                    abertas e indentadas, em vez de escondidas num painel. */}
+                {item.to === "/atuacao" && (
+                  <ul className="mb-2 ml-4 border-l border-silver/20 pl-4">
+                    {areasAtuacao.map((a) => (
+                      <li key={a.slug}>
+                        <Link
+                          to={`/atuacao/${a.slug}`}
+                          className="block py-2 text-sm text-primary-foreground/60 hover:text-accent-on-dark"
+                        >
+                          {a.nome}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             ))}
           </nav>
         </div>

@@ -12,6 +12,7 @@
  */
 export const exigencias = [
   {
+    slug: "residencial",
     area: "Residencial",
     resumo: "Obra em prédio ocupado tem regra de horário, de barulho e de circulação.",
     pontos: [
@@ -38,6 +39,7 @@ export const exigencias = [
     ],
   },
   {
+    slug: "comercial",
     area: "Comercial",
     resumo: "Aqui o inimigo é o dia parado — e a fiscalização que impede de abrir.",
     pontos: [
@@ -64,6 +66,7 @@ export const exigencias = [
     ],
   },
   {
+    slug: "condominios",
     area: "Condomínios",
     resumo: "O síndico presta contas e responde. Tudo aqui passa por documento.",
     pontos: [

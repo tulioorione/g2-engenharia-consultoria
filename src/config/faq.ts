@@ -11,30 +11,37 @@
 export const faq = [
   {
     q: "Como funciona o orçamento?",
+    areas: ["residencial","comercial","condominios"],
     a: "A primeira conversa e a visita técnica são sem custo. A partir delas você recebe um orçamento com levantamento quantitativo detalhado — é o que evita surpresa financeira no meio da obra.",
   },
   {
     q: "Vocês executam a obra ou só acompanham?",
+    areas: ["residencial","comercial","condominios"],
     a: "Os dois, e essa é a diferença. Podemos executar com equipe própria, apenas gerenciar a obra de terceiros, ou fazer as duas coisas. Quem entende do canteiro e do escritório evita projeto impossível de executar.",
   },
   {
     q: "Atendem condomínios?",
+    areas: ["condominios"],
     a: "Sim. Manutenção predial preventiva e corretiva, e gestão de obras de melhoria — com relatório de gastos para o síndico prestar contas ao conselho.",
   },
   {
     q: "Assumem obra que já começou?",
+    areas: ["residencial","comercial"],
     a: "Sim, e é situação frequente. Começamos por um diagnóstico do que já foi executado, para separar o que precisa de correção do que pode seguir.",
   },
   {
     q: "Como acompanho o andamento e os gastos?",
+    areas: ["residencial","comercial","condominios"],
     a: "Com cronograma físico-financeiro e relatório de gastos por etapa. A ideia é você saber exatamente onde cada centavo está sendo investido, sem precisar perguntar.",
   },
   {
     q: "Preciso de laudo para reformar meu apartamento?",
+    areas: ["residencial"],
     a: "Se for em condomínio, sim. A NBR 16280 exige um plano de reforma com ART, assinado por profissional habilitado e entregue ao síndico antes de a obra começar — vale até para troca de piso ou remoção de parede. Emitimos o laudo e falamos com a administração do prédio.",
   },
   {
     q: "Sou síndico. O que devo exigir de um morador que vai reformar?",
+    areas: ["condominios"],
     a: "O plano de reforma previsto na NBR 16280, com ART do responsável técnico, antes de autorizar a entrada de material ou de equipe. Sem isso, a responsabilidade por qualquer dano à estrutura pode recair sobre a administração. Analisamos esses planos para condomínios.",
   },
 ];

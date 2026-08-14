@@ -19,6 +19,11 @@ const rotas = [
   { path: "/sobre", priority: "0.8", changefreq: "monthly" },
   { path: "/servicos", priority: "0.9", changefreq: "monthly" },
   { path: "/atuacao", priority: "0.8", changefreq: "monthly" },
+  // Uma por área. São as que carregam o termo de busca real —
+  // "reforma de apartamento", "manutenção predial condomínio".
+  { path: "/atuacao/residencial", priority: "0.9", changefreq: "monthly" },
+  { path: "/atuacao/comercial", priority: "0.9", changefreq: "monthly" },
+  { path: "/atuacao/condominios", priority: "0.9", changefreq: "monthly" },
   { path: "/contato", priority: "0.7", changefreq: "yearly" },
 ];
 

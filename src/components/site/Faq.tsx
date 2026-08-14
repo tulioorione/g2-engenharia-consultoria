@@ -19,17 +19,21 @@ import { faq } from "@/config/faq";
  * Forçar o painel aberto no DOM quebraria a animação de fechar, que não tem
  * fill-mode e faria o conteúdo reaparecer ao fim do movimento.
  */
-const dadosEstruturados = {
+const montarEstrutura = (itens: typeof faq) => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faq.map((item) => ({
+  mainEntity: itens.map((item) => ({
     "@type": "Question",
     name: item.q,
     acceptedAnswer: { "@type": "Answer", text: item.a },
   })),
-};
+});
 
-export const Faq = () => {
+/** `area` filtra as perguntas para a página daquele público. */
+export const Faq = ({ area }: { area?: string }) => {
+  const itens = area ? faq.filter((f) => f.areas.includes(area)) : faq;
+  const dadosEstruturados = montarEstrutura(itens);
+
   return (
     <section id="faq" className="relative bg-secondary secao-densa">
       <Head>
@@ -59,7 +63,7 @@ export const Faq = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
           >
             <Accordion type="single" collapsible className="w-full">
-              {faq.map((item, i) => (
+              {itens.map((item, i) => (
                 <AccordionItem key={item.q} value={`item-${i}`} className="border-border">
                   <AccordionTrigger className="py-5 text-left text-lg text-primary hover:no-underline">
                     {item.q}

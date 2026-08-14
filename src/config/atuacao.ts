@@ -16,6 +16,7 @@ import { Building, Home, Store } from "lucide-react";
 export const areasAtuacao = [
   {
     icon: Home,
+    slug: "residencial",
     nome: "Residencial",
     dor: "Obra que não acaba, orçamento que dobra no meio do caminho e ninguém para responder.",
     desc: "Reforma e construção com escopo fechado e um responsável técnico do começo ao fim.",
@@ -28,6 +29,7 @@ export const areasAtuacao = [
   },
   {
     icon: Store,
+    slug: "comercial",
     nome: "Comercial",
     dor: "Loja fechada é faturamento parado. Cada dia a mais de obra sai do caixa.",
     desc: "Adequação de ponto comercial com prazo assumido em contrato e entrega chave na mão.",
@@ -40,6 +42,7 @@ export const areasAtuacao = [
   },
   {
     icon: Building,
+    slug: "condominios",
     nome: "Condomínios",
     dor: "O síndico responde pessoalmente por obra irregular no prédio — inclusive pela do morador.",
     desc: "Manutenção predial e obras de melhoria, com a documentação que o conselho vai cobrar.",

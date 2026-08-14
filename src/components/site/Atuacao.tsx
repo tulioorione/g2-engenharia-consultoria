@@ -48,7 +48,7 @@ export const Atuacao = ({ compact = false }: { compact?: boolean }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col bg-background p-8"
+              className="group relative flex flex-col bg-background p-8 transition-colors duration-500 hover:bg-secondary"
             >
               <a.icon className="h-7 w-7 text-accent" strokeWidth={1.25} aria-hidden="true" />
               <h3 className="mt-6 text-2xl text-primary">{a.nome}</h3>
@@ -68,6 +68,17 @@ export const Atuacao = ({ compact = false }: { compact?: boolean }) => {
                   ))}
                 </ul>
               )}
+
+              <div className="mt-6 flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-accent">
+                Ver detalhes
+                <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+              </div>
+              {/* Link esticado: o card inteiro clica e leva à página da área. */}
+              <Link
+                to={`/atuacao/${a.slug}`}
+                className="absolute inset-0"
+                aria-label={`Ver a área ${a.nome}`}
+              />
             </motion.article>
           ))}
         </div>

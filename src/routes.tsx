@@ -4,7 +4,9 @@ import Index from "@/pages/Index";
 import Sobre from "@/pages/Sobre";
 import Servicos from "@/pages/Servicos";
 import AtuacaoPage from "@/pages/Atuacao";
+import { AtuacaoArea } from "@/pages/AtuacaoArea";
 import Contato from "@/pages/Contato";
+import { areasAtuacao } from "@/config/atuacao";
 import NotFound from "@/pages/NotFound";
 
 /**
@@ -24,6 +26,12 @@ export const routes: RouteObject[] = [
       // não traz nenhum projeto entregue. Volta quando houver obra real para
       // mostrar. No lugar entra /atuacao, que é conteúdo verdadeiro.
       { path: "atuacao", element: <AtuacaoPage /> },
+      // Uma rota por área, geradas do config e não por parâmetro dinâmico:
+      // assim o SSG pré-renderiza as três em HTML estático, como as demais.
+      ...areasAtuacao.map((a) => ({
+        path: `atuacao/${a.slug}`,
+        element: <AtuacaoArea slug={a.slug} />,
+      })),
       { path: "contato", element: <Contato /> },
       { path: "*", element: <NotFound /> },
     ],
