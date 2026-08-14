@@ -25,7 +25,7 @@ export const Atuacao = ({ compact = false }: { compact?: boolean }) => {
               Áreas de atuação
             </div>
             <h2 className="text-4xl leading-[1.05] text-primary md:text-5xl lg:text-[56px]">
-              Onde a engenharia <span className="font-serif font-light italic">acontece.</span>
+              Onde a engenharia <span className="font-display italic">acontece.</span>
             </h2>
           </div>
           {compact && (

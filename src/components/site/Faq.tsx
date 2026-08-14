@@ -23,7 +23,7 @@ export const Faq = () => {
               Perguntas frequentes
             </div>
             <h2 className="text-4xl leading-[1.05] text-primary md:text-5xl">
-              O que perguntam <span className="font-serif font-light italic">antes de contratar.</span>
+              O que perguntam <span className="font-display italic">antes de contratar.</span>
             </h2>
           </motion.div>
 

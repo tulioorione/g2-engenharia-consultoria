@@ -20,7 +20,7 @@ export const Credenciais = () => {
           </div>
           <h2 className="text-4xl leading-[1.05] text-primary-foreground md:text-5xl">
             O que sustenta{" "}
-            <span className="font-serif font-light italic text-silver-light">a assinatura.</span>
+            <span className="font-display italic text-silver-light">a assinatura.</span>
           </h2>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-primary-foreground/75">
             Em engenharia, credencial sem número não passa numa habilitação. Estes são os
@@ -39,7 +39,7 @@ export const Credenciais = () => {
               className="flex flex-col bg-primary-deep p-8"
             >
               <dt className="text-[11px] uppercase tracking-[0.2em] text-silver">{c.titulo}</dt>
-              <dd className="mt-3 font-serif text-2xl text-primary-foreground">{c.valor}</dd>
+              <dd className="mt-3 font-display text-2xl text-primary-foreground">{c.valor}</dd>
               <dd className="mt-4 text-sm leading-relaxed text-primary-foreground/65">{c.desc}</dd>
             </motion.div>
           ))}

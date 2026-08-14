@@ -27,7 +27,7 @@ export const Team = () => {
             Quem assina
           </div>
           <h2 className="text-4xl text-primary md:text-5xl lg:text-[56px] leading-[1.05]">
-            Projeto de engenharia <span className="font-serif italic font-light">tem nome.</span>
+            Projeto de engenharia <span className="font-display italic">tem nome.</span>
           </h2>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Quem responde tecnicamente pelo seu projeto, com registro profissional ativo.
@@ -46,7 +46,7 @@ export const Team = () => {
             >
               <div
                 aria-hidden="true"
-                className="flex h-16 w-16 items-center justify-center bg-gradient-silver font-serif text-xl text-primary"
+                className="flex h-16 w-16 items-center justify-center bg-gradient-silver font-display text-xl text-primary"
               >
                 {iniciais(p.nome)}
               </div>

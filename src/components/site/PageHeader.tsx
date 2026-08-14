@@ -63,7 +63,7 @@ export const PageHeader = ({
         <h1 className="max-w-4xl text-4xl text-primary-foreground md:text-6xl lg:text-7xl leading-[1.05]">
           {title}{" "}
           {highlight && (
-            <span className="font-serif font-light italic text-silver-light">{highlight}</span>
+            <span className="font-display italic text-silver-light">{highlight}</span>
           )}
         </h1>
         {intro && (

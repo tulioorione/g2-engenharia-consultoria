@@ -21,7 +21,7 @@ export const About = ({ compact = false }: { compact?: boolean }) => {
             Quem somos
           </div>
           <h2 className="text-4xl text-primary md:text-5xl lg:text-[56px] leading-[1.05]">
-            Engenharia <span className="font-serif italic font-light">que resolve.</span>
+            Engenharia <span className="font-display italic">que resolve.</span>
           </h2>
 
           {/* Texto da apresentação institucional da G2 (página 2). */}
@@ -40,7 +40,7 @@ export const About = ({ compact = false }: { compact?: boolean }) => {
             </div>
           )}
 
-          <p className="mt-8 font-serif text-xl italic text-primary md:text-2xl">
+          <p className="mt-8 font-display text-xl italic text-primary md:text-2xl">
             {institucional.assinatura}
           </p>
 

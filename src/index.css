@@ -104,10 +104,10 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-feature-settings: 'cv11', 'ss01';
+    font-family: 'Lato', system-ui, -apple-system, sans-serif;
   }
   h1, h2, h3, h4, h5 {
+    font-family: 'Poppins', system-ui, sans-serif;
     letter-spacing: -0.02em;
     font-weight: 600;
   }
@@ -123,9 +123,12 @@
     outline: 2px solid hsl(var(--ring));
     outline-offset: 3px;
   }
-  .font-serif {
-    font-family: 'Fraunces', Georgia, serif;
-    font-optical-sizing: auto;
+  /* Antes isto era a Fraunces em itálico, que criava contraste editorial por
+     troca de família. O material da G2 não tem serifa nenhuma, então o
+     contraste passa a ser de peso: Poppins Light no meio de Poppins Semibold. */
+  .font-display {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 300;
     letter-spacing: -0.03em;
   }
   ::selection {

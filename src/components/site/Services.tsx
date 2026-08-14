@@ -27,7 +27,7 @@ export const Services = ({ compact = false }: { compact?: boolean }) => {
             </div>
             <h2 className="max-w-3xl text-4xl leading-[1.05] text-primary-foreground md:text-5xl lg:text-[56px]">
               Da execução ao{" "}
-              <span className="font-serif font-light italic text-silver-light">
+              <span className="font-display italic text-silver-light">
                 gerenciamento da sua obra.
               </span>
             </h2>

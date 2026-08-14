@@ -81,7 +81,7 @@ const Contato = () => (
             transition={{ duration: 0.7 }}
             className="max-w-2xl text-3xl leading-[1.1] text-primary md:text-4xl"
           >
-            O que acontece <span className="font-serif font-light italic">depois que você chama.</span>
+            O que acontece <span className="font-display italic">depois que você chama.</span>
           </motion.h2>
 
           <ol className="mt-12 grid gap-px bg-border md:grid-cols-3">
@@ -94,7 +94,7 @@ const Contato = () => (
                 transition={{ duration: 0.6, delay: i * 0.08 }}
                 className="flex flex-col bg-background p-8"
               >
-                <span className="font-serif text-4xl leading-none text-silver">{p.n}</span>
+                <span className="font-display text-4xl leading-none text-silver">{p.n}</span>
                 <h3 className="mt-5 text-lg text-primary">{p.titulo}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
               </motion.li>

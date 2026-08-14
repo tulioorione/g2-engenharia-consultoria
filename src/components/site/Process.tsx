@@ -65,7 +65,7 @@ export const Process = () => {
               Como trabalhamos
             </div>
             <h2 className="max-w-3xl text-4xl md:text-5xl lg:text-[56px] leading-[1.05]">
-              Um método <span className="font-serif italic font-light text-silver-light">construído em cada projeto.</span>
+              Um método <span className="font-display italic text-silver-light">construído em cada projeto.</span>
             </h2>
           </motion.div>
 
@@ -123,7 +123,7 @@ const Step = ({
       style={{ opacity, y }}
       className="grid grid-cols-[auto_1fr] items-start gap-6 max-md:!transform-none max-md:!opacity-100 md:gap-10"
     >
-      <div className="font-serif text-5xl md:text-7xl text-silver-light/90 leading-none">{step.n}</div>
+      <div className="font-display text-5xl md:text-7xl text-silver-light/90 leading-none">{step.n}</div>
       <div className="pt-2 md:pt-4">
         <h3 className="text-2xl md:text-3xl">{step.title}</h3>
         <p className="mt-3 max-w-xl text-primary-foreground/70 leading-relaxed">{step.desc}</p>

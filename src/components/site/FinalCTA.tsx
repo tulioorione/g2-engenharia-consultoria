@@ -25,7 +25,7 @@ export const FinalCTA = () => {
           {/* Chamada da última página da apresentação da G2. */}
           <h2 className="text-5xl leading-[1.05] text-primary-foreground md:text-6xl lg:text-7xl">
             Vamos tirar seu projeto{" "}
-            <span className="font-serif font-light italic text-silver-light">do papel?</span>
+            <span className="font-display italic text-silver-light">do papel?</span>
           </h2>
           <p className="mt-8 max-w-xl text-lg text-primary-foreground/75">
             Fale direto com um dos sócios. Sem intermediário e sem custo pela primeira conversa.

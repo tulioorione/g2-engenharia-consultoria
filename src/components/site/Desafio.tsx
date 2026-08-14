@@ -41,7 +41,7 @@ export const Desafio = () => {
               A solução G2
             </div>
             <p className="text-2xl leading-[1.35] text-primary-foreground md:text-3xl">
-              <span className="font-serif italic">Centralizamos a responsabilidade.</span>{" "}
+              <span className="font-display italic">Centralizamos a responsabilidade.</span>{" "}
               {desafioCliente.solucao.replace("Centralizamos a responsabilidade. ", "")}
             </p>
           </motion.div>

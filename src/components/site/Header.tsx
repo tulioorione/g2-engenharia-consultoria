@@ -38,7 +38,7 @@ export const Header = () => {
     >
       <div className="container-cz flex h-full items-center justify-between">
         <Link to="/" className="flex items-center gap-2 text-primary-foreground" aria-label="G2 Engenharia — início">
-          <div className="flex h-9 w-9 items-center justify-center border border-silver/40 bg-gradient-silver text-primary font-serif text-lg font-medium">
+          <div className="flex h-9 w-9 items-center justify-center border border-silver/40 bg-gradient-silver text-primary font-display text-lg font-medium">
             G2
           </div>
           <div className="hidden flex-col leading-tight sm:flex">

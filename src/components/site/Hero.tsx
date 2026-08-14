@@ -47,7 +47,7 @@ export const Hero = () => {
           transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-5xl text-primary-foreground text-5xl leading-[1.02] sm:text-6xl md:text-7xl lg:text-[88px]"
         >
-          Transformando desafios em <span className="font-serif font-light italic text-silver-light">resultados concretos.</span>
+          Transformando desafios em <span className="font-display italic text-silver-light">resultados concretos.</span>
         </motion.h1>
 
         <motion.p

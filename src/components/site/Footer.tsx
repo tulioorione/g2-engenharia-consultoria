@@ -10,7 +10,7 @@ export const Footer = () => {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link to="/" className="flex items-center gap-2" aria-label="G2 Engenharia — início">
-              <div className="flex h-9 w-9 items-center justify-center border border-silver/40 bg-gradient-silver text-primary font-serif text-lg">
+              <div className="flex h-9 w-9 items-center justify-center border border-silver/40 bg-gradient-silver text-primary font-display text-lg">
                 G2
               </div>
               <div className="leading-tight">

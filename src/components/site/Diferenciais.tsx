@@ -26,7 +26,7 @@ export const Diferenciais = () => {
           </div>
           <h2 className="text-4xl leading-[1.05] text-primary md:text-5xl">
             Quem entende das duas pontas{" "}
-            <span className="font-serif font-light italic">erra menos.</span>
+            <span className="font-display italic">erra menos.</span>
           </h2>
         </motion.div>
 
@@ -40,7 +40,7 @@ export const Diferenciais = () => {
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="relative border-t border-primary pt-6"
             >
-              <div className="font-serif text-5xl leading-none text-silver">
+              <div className="font-display text-5xl leading-none text-silver">
                 {String(i + 1).padStart(2, "0")}
               </div>
               <h3 className="mt-5 text-lg font-semibold uppercase tracking-[0.1em] text-primary">
