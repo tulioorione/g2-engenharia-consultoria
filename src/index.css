@@ -3,15 +3,18 @@
 @tailwind utilities;
 
 /* G2 Engenharia — Design System
-   Paleta: Azul marinho profundo + aço + prata + ciano accent
+   Paleta extraída da apresentação institucional da G2 e do logotipo:
+   navy #223143 + cinzas NEUTROS + fotografia em preto e branco.
+   Os cinzas do material são neutros (saturação 0), não azulados — por isso
+   silver, background e secondary perderam o tom azul que tinham antes.
    Todas as cores em HSL.
 */
 
 @layer base {
   :root {
-    /* Surfaces */
-    --background: 210 20% 98%;          /* off-white #F5F7FA */
-    --foreground: 0 0% 10%;             /* charcoal #1A1A1A */
+    /* Surfaces — cinzas neutros, como no material */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 10%;
@@ -19,54 +22,61 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
 
-    /* Brand — navy primary */
-    --primary: 213 51% 11%;             /* #0D1B2A */
-    --primary-foreground: 210 25% 97%;
-    --primary-deep: 215 40% 18%;        /* #1B2A3F */
-    --primary-steel: 210 29% 24%;       /* #2C3E50 */
+    /* Brand — navy da marca.
+       #223143 é a cor exata do PDF; o logotipo traz #1D2E42, praticamente
+       a mesma. É mais clara e menos saturada que a que o site usava antes
+       (#0D1B2A), então as seções escuras clarearam de propósito.
+       O steel ficou em 24% porque a 30% o texto prata sobre ele reprovava
+       em AA (3,66:1); a 24% passa com 4,60:1. */
+    --primary: 213 33% 20%;             /* #223143 */
+    --primary-foreground: 0 0% 97%;
+    --primary-deep: 213 34% 13%;
+    --primary-steel: 212 26% 24%;
 
-    /* Accent — cyan steel.
-       O #4A90B8 original (L=51%) reprovava em AA nos dois fundos: 3,39:1 sobre
-       o claro e 4,04:1 sobre o navy. Nenhuma luminosidade única passa nos dois,
-       então são dois tokens — mesma matiz e saturação, só a luminosidade muda,
-       o que preserva a identidade da marca.
-       --accent         L=40%  5,10:1 no claro · 4,65:1 no secondary
-       --accent-on-dark L=56%  5,70:1 no primary · 4,69:1 no primary-deep
-       --ring           L=48%  ≥3:1 em TODOS os fundos (anel de foco é
-                               elemento não-textual: exige 3:1, não 4,5:1) */
-    --accent: 203 44% 40%;
-    --accent-on-dark: 203 44% 56%;
-    --accent-foreground: 210 25% 97%;
+    /* Accent — derivado do próprio navy da marca (mesma matiz 213), não mais
+       um ciano de fora. O material da G2 não tem cor de destaque: é navy +
+       cinza neutro + foto P&B. Manter o accent na matiz da marca dá o sinal
+       funcional (hover, foco, eyebrow) sem introduzir cor estranha.
 
-    /* Silver / metallic */
-    --silver: 210 18% 77%;              /* #B8C5D0 */
-    --silver-light: 210 22% 86%;        /* #D4DCE4 */
+       Recalculado para os fundos NOVOS, que clarearam:
+       --accent         L=38%  6,47:1 no claro · 5,52:1 no secondary
+       --accent-on-dark L=68%  5,52:1 no navy · 6,89:1 no deep · 4,71:1 no steel
+       --ring           L=53%  ≥3:1 nas superfícies que têm elemento focável
+                               (anel de foco exige 3:1, não 4,5:1). A faixa
+                               que funciona é estreita: só 52–54%. */
+    --accent: 213 38% 38%;
+    --accent-on-dark: 213 38% 68%;
+    --accent-foreground: 0 0% 97%;
 
-    --secondary: 210 20% 94%;
-    --secondary-foreground: 213 51% 11%;
+    /* Cinzas neutros do material — #A6A6A6 e a família do #E8E8E8 */
+    --silver: 0 0% 65%;                 /* #A6A6A6 */
+    --silver-light: 0 0% 82%;
 
-    --muted: 210 20% 94%;
-    --muted-foreground: 215 16% 40%;
+    --secondary: 0 0% 91%;              /* #E8E8E8 */
+    --secondary-foreground: 213 33% 20%;
+
+    --muted: 0 0% 91%;
+    --muted-foreground: 0 0% 36%;
 
     --destructive: 0 70% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 18% 88%;
-    --input: 210 18% 88%;
-    --ring: 203 44% 48%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 213 38% 53%;
 
     --radius: 0.25rem;
 
-    /* Gradients */
-    --gradient-navy: linear-gradient(180deg, hsl(213 51% 11%) 0%, hsl(215 40% 14%) 100%);
-    --gradient-navy-radial: radial-gradient(ellipse at top, hsl(215 45% 20%) 0%, hsl(213 51% 9%) 70%);
-    --gradient-hero-overlay: linear-gradient(180deg, hsl(213 51% 8% / 0.55) 0%, hsl(213 51% 8% / 0.85) 100%);
-    --gradient-silver: linear-gradient(135deg, hsl(210 22% 86%) 0%, hsl(210 18% 70%) 100%);
+    /* Gradients — na matiz do navy da marca */
+    --gradient-navy: linear-gradient(180deg, hsl(213 33% 20%) 0%, hsl(213 34% 13%) 100%);
+    --gradient-navy-radial: radial-gradient(ellipse at top, hsl(213 30% 26%) 0%, hsl(213 35% 12%) 70%);
+    --gradient-hero-overlay: linear-gradient(180deg, hsl(213 35% 10% / 0.55) 0%, hsl(213 35% 10% / 0.88) 100%);
+    --gradient-silver: linear-gradient(135deg, hsl(0 0% 84%) 0%, hsl(0 0% 62%) 100%);
 
     /* Shadows */
-    --shadow-card: 0 1px 2px hsl(213 51% 11% / 0.04), 0 8px 24px -8px hsl(213 51% 11% / 0.08);
-    --shadow-elevated: 0 10px 40px -10px hsl(213 51% 11% / 0.25);
-    --shadow-glow-silver: 0 0 0 1px hsl(210 22% 86% / 0.4), 0 8px 24px -8px hsl(210 22% 86% / 0.2);
+    --shadow-card: 0 1px 2px hsl(213 33% 20% / 0.05), 0 8px 24px -8px hsl(213 33% 20% / 0.10);
+    --shadow-elevated: 0 10px 40px -10px hsl(213 33% 20% / 0.28);
+    --shadow-glow-silver: 0 0 0 1px hsl(0 0% 84% / 0.4), 0 8px 24px -8px hsl(0 0% 84% / 0.2);
 
     /* Motion */
     --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);

@@ -3,8 +3,9 @@ import { contato, enderecoCompleto, redesSociais } from "@/config/contato";
 import { servicos } from "@/config/servicos";
 
 export const Footer = () => {
+  // O fundo do rodapé fica um degrau abaixo do primary-deep, para fechar a página.
   return (
-    <footer className="bg-[hsl(213_55%_7%)] text-primary-foreground">
+    <footer className="bg-[hsl(213_35%_9%)] text-primary-foreground">
       <div className="container-cz py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
