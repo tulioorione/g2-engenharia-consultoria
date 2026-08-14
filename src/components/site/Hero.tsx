@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-construction.webp";
-import hero1280 from "@/assets/hero-construction-1280.webp";
-import hero768 from "@/assets/hero-construction-768.webp";
+import heroImage from "@/assets/hero-obra.webp";
+import hero1280 from "@/assets/hero-obra-1280.webp";
+import hero768 from "@/assets/hero-obra-768.webp";
 
 export const Hero = () => {
   // min-h-svh em vez de min-h-screen: no celular, 100vh inclui a área da barra
@@ -14,10 +14,10 @@ export const Hero = () => {
           src={heroImage}
           srcSet={`${hero768} 768w, ${hero1280} 1280w, ${heroImage} 1920w`}
           sizes="100vw"
-          alt="Vista aérea de canteiro de obras de grande porte"
+          alt="Equipe de engenharia conferindo medições em campo, com equipamento topográfico"
           className="h-full w-full object-cover"
           width={1920}
-          height={1080}
+          height={1281}
           decoding="async"
           /* É o LCP da página: precisa sair na frente do resto.
              O React 18 descarta `fetchPriority` em camelCase — só a forma

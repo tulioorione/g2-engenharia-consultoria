@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { institucional } from "@/config/atuacao";
-import aboutImage from "@/assets/about-team.webp";
-import aboutImage640 from "@/assets/about-team-640.webp";
+import aboutImage from "@/assets/equipe-campo.webp";
+import aboutImage640 from "@/assets/equipe-campo-640.webp";
 
 /** `compact` é a versão da home: só a chamada, com link para a página Sobre. */
 export const About = ({ compact = false }: { compact?: boolean }) => {

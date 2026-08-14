@@ -5,6 +5,8 @@ import { Faq } from "@/components/site/Faq";
 import { contato, enderecoCompleto, socios } from "@/config/contato";
 import { proximosPassos } from "@/config/faq";
 import { Seo } from "@/components/site/Seo";
+import acordo from "@/assets/acordo.webp";
+import acordoSm from "@/assets/acordo-800.webp";
 
 /** Os sócios atendem direto — é assim que a apresentação da G2 encerra. */
 const canais = [
@@ -79,7 +81,7 @@ const Contato = () => (
             transition={{ duration: 0.7 }}
             className="max-w-2xl text-3xl leading-[1.1] text-primary md:text-4xl"
           >
-            O que acontece <span className="font-serif font-light italic">depois que você envia.</span>
+            O que acontece <span className="font-serif font-light italic">depois que você chama.</span>
           </motion.h2>
 
           <ol className="mt-12 grid gap-px bg-border md:grid-cols-3">
@@ -98,6 +100,26 @@ const Contato = () => (
               </motion.li>
             ))}
           </ol>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-16 aspect-[3/1] overflow-hidden bg-muted"
+          >
+            <img
+              src={acordo}
+              srcSet={`${acordoSm} 800w, ${acordo} 1600w`}
+              sizes="100vw"
+              alt="Aperto de mãos sobre a planta de um projeto, ao lado do capacete de obra"
+              loading="lazy"
+              decoding="async"
+              width={1600}
+              height={1067}
+              className="h-full w-full object-cover"
+            />
+          </motion.div>
         </div>
       </div>
     </section>

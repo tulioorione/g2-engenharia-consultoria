@@ -48,7 +48,7 @@ describe("rotas", () => {
 
   it("marca o hero como prioridade alta de download (LCP)", () => {
     renderRoute("/");
-    const hero = screen.getByAltText(/vista aérea de canteiro/i);
+    const hero = screen.getByAltText(/equipe de engenharia conferindo medições/i);
     // Em camelCase o React 18 descarta o atributo silenciosamente; este
     // teste existe para o fetchpriority não sumir sem ninguém perceber.
     expect(hero).toHaveAttribute("fetchpriority", "high");

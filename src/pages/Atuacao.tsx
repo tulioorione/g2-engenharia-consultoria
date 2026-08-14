@@ -2,7 +2,10 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { Atuacao } from "@/components/site/Atuacao";
 import { Desafio } from "@/components/site/Desafio";
 import { FinalCTA } from "@/components/site/FinalCTA";
+import { motion } from "framer-motion";
 import { Seo } from "@/components/site/Seo";
+import fachada from "@/assets/fachada.webp";
+import fachadaSm from "@/assets/fachada-800.webp";
 
 const AtuacaoPage = () => (
   <>
@@ -18,6 +21,27 @@ const AtuacaoPage = () => (
       intro="Obra predial e reforma, do apartamento ao condomínio inteiro."
     />
     <Atuacao />
+
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1 }}
+      className="aspect-[21/9] overflow-hidden bg-muted md:aspect-[3/1]"
+    >
+      <img
+        src={fachada}
+        srcSet={`${fachadaSm} 800w, ${fachada} 1600w`}
+        sizes="100vw"
+        alt="Fachada de edifício com esquadrias alinhadas, vista em detalhe"
+        loading="lazy"
+        decoding="async"
+        width={1600}
+        height={1066}
+        className="h-full w-full object-cover"
+      />
+    </motion.div>
+
     <Desafio />
     <FinalCTA />
   </>
