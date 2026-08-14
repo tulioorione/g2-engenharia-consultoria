@@ -2,14 +2,21 @@ import { motion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Faq } from "@/components/site/Faq";
-import { contato, enderecoCompleto } from "@/config/contato";
+import { contato, enderecoCompleto, socios } from "@/config/contato";
 import { proximosPassos } from "@/config/faq";
 import { Seo } from "@/components/site/Seo";
 
+/** Os sócios atendem direto — é assim que a apresentação da G2 encerra. */
 const canais = [
-  { icon: Mail, label: "E-mail", value: contato.email, href: `mailto:${contato.email}` },
-  { icon: Phone, label: "Telefone", value: contato.telefoneExibido, href: contato.telefoneHref },
-  { icon: MapPin, label: "Endereço", value: enderecoCompleto },
+  ...socios.map((s) => ({
+    icon: Phone,
+    label: s.nome,
+    value: s.telefoneExibido,
+    href: s.whatsapp,
+    externo: true,
+  })),
+  { icon: Mail, label: "E-mail", value: contato.email, href: `mailto:${contato.email}`, externo: false },
+  { icon: MapPin, label: "Onde estamos", value: enderecoCompleto, href: undefined, externo: false },
 ];
 
 const Contato = () => (
@@ -21,9 +28,9 @@ const Contato = () => (
     />
     <PageHeader
       eyebrow="Vamos conversar"
-      title="Pronto para transformar seu"
-      highlight="próximo desafio?"
-      intro="Conte o que seu projeto precisa. Respondemos com clareza técnica e sem enrolação."
+      title="Vamos tirar seu projeto"
+      highlight="do papel?"
+      intro="Fale direto com um dos sócios. Conte o que sua obra precisa — sem custo pela primeira conversa."
     />
 
     <section className="relative bg-background py-24 md:py-32">
@@ -45,9 +52,15 @@ const Contato = () => (
               {c.href ? (
                 <a
                   href={c.href}
+                  {...(c.externo && { target: "_blank", rel: "noreferrer noopener" })}
                   className="mt-2 text-lg text-primary transition-colors duration-500 hover:text-accent"
                 >
                   {c.value}
+                  {c.externo && (
+                    <span className="mt-1 block text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                      WhatsApp
+                    </span>
+                  )}
                 </a>
               ) : (
                 <div className="mt-2 text-lg text-primary">{c.value}</div>

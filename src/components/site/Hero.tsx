@@ -56,8 +56,8 @@ export const Hero = () => {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="mt-8 max-w-xl text-lg text-primary-foreground/80 md:text-xl"
         >
-          Estudos de viabilidade, gestão e supervisão de obras para mineração, energia e
-          infraestrutura — do parecer técnico à entrega fiscalizada.
+          Da execução ao gerenciamento estratégico da sua obra — construção, reforma e
+          manutenção com orçamento, cronograma e prestação de contas.
         </motion.p>
 
         <motion.div

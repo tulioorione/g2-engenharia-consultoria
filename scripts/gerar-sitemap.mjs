@@ -18,7 +18,7 @@ const rotas = [
   { path: "/", priority: "1.0", changefreq: "monthly" },
   { path: "/sobre", priority: "0.8", changefreq: "monthly" },
   { path: "/servicos", priority: "0.9", changefreq: "monthly" },
-  { path: "/projetos", priority: "0.8", changefreq: "monthly" },
+  { path: "/atuacao", priority: "0.8", changefreq: "monthly" },
   { path: "/contato", priority: "0.7", changefreq: "yearly" },
 ];
 

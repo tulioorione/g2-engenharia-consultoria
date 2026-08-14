@@ -1,30 +1,32 @@
 import { Hero } from "@/components/site/Hero";
 import { About } from "@/components/site/About";
+import { Desafio } from "@/components/site/Desafio";
 import { Services } from "@/components/site/Services";
-import { Stats } from "@/components/site/Stats";
-import { Projects } from "@/components/site/Projects";
-import { Testimonials } from "@/components/site/Testimonials";
+import { Diferenciais } from "@/components/site/Diferenciais";
+import { Atuacao } from "@/components/site/Atuacao";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { Seo } from "@/components/site/Seo";
 
 /**
- * A home vira uma porta de entrada: apresenta e encaminha, em vez de ser o
- * site inteiro numa página. Processo e Setores foram para /sobre, e as
- * versões `compact` daqui levam às páginas completas.
+ * A home apresenta e encaminha, em vez de ser o site inteiro numa página.
+ *
+ * Saíram daqui: os contadores de números inventados (viraram os diferenciais
+ * reais da apresentação) e os depoimentos, que eram pessoas e empresas
+ * inventadas sem nenhum respaldo no material da G2.
  */
 const Index = () => (
   <>
     <Seo
-      title="G2 Engenharia e Consultoria — Transformando desafios em resultados concretos"
-      description="Consultoria em engenharia, gestão de projetos, estudos de viabilidade e supervisão de obras para infraestrutura, indústria e mineração."
+      title="G2 Engenharia e Consultoria — Da execução ao gerenciamento da sua obra"
+      description="Construção civil, serviços estruturais e manutenção, com orçamento, cronograma e controle de caixa. Obra residencial, comercial e de condomínios."
       path="/"
     />
     <Hero />
     <About compact />
+    <Desafio />
     <Services compact />
-    <Stats />
-    <Projects compact />
-    <Testimonials />
+    <Diferenciais />
+    <Atuacao compact />
     <FinalCTA />
   </>
 );

@@ -26,9 +26,9 @@ describe("rotas", () => {
   it.each([
     ["/", "Transformando desafios em"],
     ["/sobre", "Engenharia"],
-    ["/servicos", "Quatro frentes. Uma"],
-    ["/projetos", "O que entregamos"],
-    ["/contato", "Pronto para transformar seu"],
+    ["/servicos", "Da execução ao"],
+    ["/atuacao", "Onde a engenharia"],
+    ["/contato", "Vamos tirar seu projeto"],
   ])("renderiza %s com o título esperado", (path, titulo) => {
     renderRoute(path);
     expect(screen.getAllByRole("heading", { level: 1 })[0]).toHaveTextContent(titulo);

@@ -1,42 +1,36 @@
+import { socios } from "@/config/contato";
+
 /**
- * @ficticio TODA esta lista é inventada — nomes, formações e trajetórias.
+ * Os NOMES e TELEFONES são reais — vêm da página 8 da apresentação
+ * institucional, onde os dois sócios assinam o convite de contato.
  *
- * Os números de CREA foram deixados zerados de propósito: é o sinal visível de
- * que a seção é maquete. Registro profissional é verificável publicamente, então
- * um número inventado seria pior que nenhum.
+ * @ficticio O que ainda falta: formação, número de CREA e a divisão de papéis
+ * entre os dois. Deixei os campos de registro zerados no mesmo padrão do resto
+ * do site — registro profissional é publicamente verificável, então número
+ * inventado seria pior que campo vazio.
  *
- * Esta é a seção mais importante do site: engenharia se contrata de gente, não
- * de empresa. Quem vai propor a G2 para a diretoria precisa de nome, formação e
- * CREA para sustentar a escolha. Substituir pelas pessoas reais antes de qualquer
- * publicação.
- *
- * Sem foto de propósito: monograma em vez de imagem de banco. Foto de banco
- * apresentada como sendo a equipe é enganosa; monograma é honesto e some assim
- * que as fotos reais chegarem.
+ * Sem foto: monograma. Foto de banco apresentada como sendo o sócio é
+ * enganosa; a inicial some assim que as fotos reais chegarem.
  */
 export const equipe = [
   {
-    nome: "Nome do Sócio Fundador",
-    cargo: "Sócio-diretor",
-    formacao: "Engenharia Civil · Especialização em Geotecnia",
+    nome: socios[0].nome,
+    cargo: "Sócio-fundador",
+    formacao: "",
     crea: "CREA-MG 000.000/D",
+    telefoneExibido: socios[0].telefoneExibido,
+    telefoneHref: socios[0].telefoneHref,
     trajetoria:
-      "Duas décadas em obras de barragem e infraestrutura de mineração, com passagem por gerenciamento de contratos de grande porte.",
+      "Atua nas duas pontas do negócio: execução no canteiro e gerenciamento no escritório.",
   },
   {
-    nome: "Nome do Segundo Sócio",
-    cargo: "Sócio · Engenharia de projetos",
-    formacao: "Engenharia Mecânica · MBA em Gestão de Projetos",
+    nome: socios[1].nome,
+    cargo: "Sócio-fundador",
+    formacao: "",
     crea: "CREA-MG 000.000/D",
+    telefoneExibido: socios[1].telefoneExibido,
+    telefoneHref: socios[1].telefoneHref,
     trajetoria:
-      "Implantação e comissionamento de plantas industriais e usinas, do estudo de viabilidade à entrega assistida.",
-  },
-  {
-    nome: "Nome do Coordenador Técnico",
-    cargo: "Coordenação de campo",
-    formacao: "Engenharia Civil · Especialização em Segurança do Trabalho",
-    crea: "CREA-MG 000.000/D",
-    trajetoria:
-      "Fiscalização e supervisão de obras rodoviárias e de saneamento, com foco em conformidade e controle de medições.",
+      "Responde pelo planejamento, orçamento e controle financeiro das obras acompanhadas.",
   },
 ];

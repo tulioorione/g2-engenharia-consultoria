@@ -52,12 +52,27 @@ export const Team = () => {
               </div>
               <h3 className="mt-6 text-xl leading-snug text-primary">{p.nome}</h3>
               <div className="mt-1 text-xs uppercase tracking-[0.18em] text-accent">{p.cargo}</div>
-              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{p.trajetoria}</p>
+              <p className="mt-5 flex-1 text-sm leading-relaxed text-muted-foreground">
+                {p.trajetoria}
+              </p>
               <dl className="mt-6 border-t border-border pt-5 text-sm">
-                <dt className="sr-only">Formação</dt>
-                <dd className="text-muted-foreground">{p.formacao}</dd>
+                {p.formacao && (
+                  <>
+                    <dt className="sr-only">Formação</dt>
+                    <dd className="text-muted-foreground">{p.formacao}</dd>
+                  </>
+                )}
+                <dt className="sr-only">Telefone</dt>
+                <dd>
+                  <a
+                    href={p.telefoneHref}
+                    className="font-medium text-primary transition-colors duration-300 hover:text-accent"
+                  >
+                    {p.telefoneExibido}
+                  </a>
+                </dd>
                 <dt className="sr-only">Registro profissional</dt>
-                <dd className="mt-2 font-medium text-primary">{p.crea}</dd>
+                <dd className="mt-2 text-muted-foreground">{p.crea}</dd>
               </dl>
             </motion.article>
           ))}

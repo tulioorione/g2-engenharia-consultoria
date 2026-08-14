@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { institucional } from "@/config/atuacao";
 import aboutImage from "@/assets/about-team.webp";
 import aboutImage640 from "@/assets/about-team-640.webp";
 
@@ -22,26 +23,27 @@ export const About = ({ compact = false }: { compact?: boolean }) => {
           <h2 className="text-4xl text-primary md:text-5xl lg:text-[56px] leading-[1.05]">
             Engenharia <span className="font-serif italic font-light">que resolve.</span>
           </h2>
-          {/* @ficticio A trajetória de "duas décadas em canteiros" e o compromisso
-              de acompanhamento por sócio precisam do aval do dono. A formulação foi
-              escolhida de propósito: atribui a experiência às pessoas — o que tende
-              a ser verdade — em vez de à empresa, que é nova. Ver auditoria de
-              conteúdo, itens 07 e 08. */}
-          <p className="mt-8 text-lg text-muted-foreground leading-relaxed max-w-xl">
-            A G2 nasce da trajetória de engenheiros que passaram duas décadas em canteiros de
-            mineração, energia e infraestrutura.
+
+          {/* Texto da apresentação institucional da G2 (página 2). */}
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            {institucional.quemSomos}
           </p>
+
           {!compact && (
-            <p className="mt-4 text-lg text-muted-foreground leading-relaxed max-w-xl">
-              A experiência é longa; a empresa é nova. É por isso que aqui cada projeto é
-              acompanhado por sócio — não repassado para equipe júnior.
-            </p>
+            <div className="mt-10 border-l-2 border-accent pl-6">
+              <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                Nossa missão
+              </div>
+              <p className="mt-3 max-w-xl text-lg leading-relaxed text-primary">
+                {institucional.missao}
+              </p>
+            </div>
           )}
 
-          {/* Os selos "CREA" e "ISO 9001" que ficavam aqui saíram: eram duas
-              palavras sem número, e agora existe a seção Credenciais, que os
-              mostra com registro, apólice e normas. Manter os dois seria
-              repetir a mesma informação de forma mais fraca. */}
+          <p className="mt-8 font-serif text-xl italic text-primary md:text-2xl">
+            {institucional.assinatura}
+          </p>
+
           {compact && (
             <Link
               to="/sobre"
@@ -64,20 +66,16 @@ export const About = ({ compact = false }: { compact?: boolean }) => {
               src={aboutImage}
               srcSet={`${aboutImage640} 640w, ${aboutImage} 1280w`}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              alt="Engenheiros analisando projetos no canteiro de obras"
+              alt="Profissional da G2 com equipamento de proteção durante serviço em telhado"
               loading="lazy"
               decoding="async"
-              width={1280}
-              height={1280}
+              width={1029}
+              height={1548}
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="absolute -bottom-6 -left-6 hidden border border-border bg-background p-6 shadow-elevated md:block">
-            <div className="font-serif text-5xl text-primary">20+</div>
-            <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground mt-1 max-w-[140px]">
-              Anos de experiência em engenharia
-            </div>
-          </div>
+          {/* O selo "20+ anos" saiu: a apresentação da G2 não afirma tempo de
+              mercado, e a empresa é nova. Ver auditoria de conteúdo, item 08. */}
         </motion.div>
       </div>
     </section>

@@ -32,7 +32,7 @@ export const DadosEstruturados = () => {
       addressRegion: contato.endereco.uf,
       addressCountry: contato.endereco.pais,
     },
-    areaServed: atuacao.estados.map((nome) => ({ "@type": "State", name: nome })),
+    areaServed: atuacao.estados.map((nome) => ({ "@type": "Place", name: nome })),
     knowsAbout: servicos.map((s) => s.title),
     ...(redesSociais.length > 0 && { sameAs: redesSociais.map((r) => r.href) }),
   };

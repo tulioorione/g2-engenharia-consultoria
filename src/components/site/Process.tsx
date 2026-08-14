@@ -3,34 +3,36 @@ import { useRef } from "react";
 
 /**
  * @ficticio Os entregáveis nomeados abaixo descrevem um compromisso comercial
- * que a G2 ainda não confirmou. Diagnóstico → Planejamento → Execução → Entrega
- * é um processo genérico; o que diferencia é dizer o que o cliente recebe em
- * cada etapa. Precisa do aval do dono, linha por linha.
+ * que a G2 ainda não confirmou — precisam do aval dos sócios, linha por linha.
+ *
+ * O vocabulário foi trazido para o negócio real da empresa: obra predial e
+ * reforma. Antes falava de comissionamento e as-built, que é linguagem de
+ * obra industrial e não descreve o que a G2 entrega.
  */
 const steps = [
   {
     n: "01",
-    title: "Diagnóstico",
-    desc: "Visita técnica, leitura de projeto e mapeamento dos riscos.",
-    entrega: "Relatório com riscos priorizados e estimativa de ordem de grandeza.",
+    title: "Visita técnica",
+    desc: "Um dos sócios vai ao local entender o escopo, as condições e o que já existe.",
+    entrega: "Diagnóstico do que precisa ser feito e do que pode ser aproveitado.",
   },
   {
     n: "02",
-    title: "Planejamento",
-    desc: "Escopo fechado, governança e matriz de responsabilidades entre as partes.",
-    entrega: "Cronograma físico-financeiro e baseline de custo.",
+    title: "Orçamento",
+    desc: "Levantamento quantitativo detalhado, item a item, para não haver surpresa depois.",
+    entrega: "Orçamento fechado e cronograma físico-financeiro por etapa.",
   },
   {
     n: "03",
     title: "Execução",
-    desc: "Coordenação em campo, controle de qualidade e frente de segurança.",
-    entrega: "Relatório periódico de progresso e registro de não conformidades.",
+    desc: "Equipe própria no canteiro, com acompanhamento técnico e controle de compras.",
+    entrega: "Relatório de andamento e de gastos, com registro do que foi executado.",
   },
   {
     n: "04",
     title: "Entrega",
-    desc: "Comissionamento, as-built e transferência documentada ao cliente.",
-    entrega: "Dossiê técnico completo e ART de conclusão.",
+    desc: "Vistoria final com o cliente, ajuste de pendências e fechamento de contas.",
+    entrega: "Prestação de contas completa e obra entregue sem pendência aberta.",
   },
 ];
 

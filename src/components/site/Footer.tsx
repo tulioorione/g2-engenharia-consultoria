@@ -26,13 +26,14 @@ export const Footer = () => {
               divergirem quando um for adicionado ou renomeado. */}
           <FooterCol
             title="Serviços"
-            links={servicos.map((s) => ({ label: s.title, to: "/servicos" }))}
+            /* São 7 serviços; no rodapé cabem os 4 principais. */
+            links={servicos.slice(0, 4).map((s) => ({ label: s.title, to: "/servicos" }))}
           />
           <FooterCol
             title="Institucional"
             links={[
               { label: "Sobre", to: "/sobre" },
-              { label: "Projetos", to: "/projetos" },
+              { label: "Atuação", to: "/atuacao" },
               { label: "Contato", to: "/contato" },
             ]}
           />

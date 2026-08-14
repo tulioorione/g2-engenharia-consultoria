@@ -27,19 +27,19 @@ export const credenciais = [
     desc: "Seguro de responsabilidade civil profissional para erros e omissões de projeto.",
   },
   {
-    titulo: "Conformidade",
-    valor: "NRs e NBRs",
-    desc: "Atuação conforme as normas regulamentadoras de segurança e as NBRs aplicáveis a cada obra.",
+    titulo: "Equipe regularizada",
+    valor: "Normas legais",
+    desc: "Equipe capacitada, treinada e regularizada diante de todas as normas legais — como declara a apresentação institucional da G2.",
   },
 ];
 
 /**
- * @ficticio A área de atendimento precisa ser confirmada. Ela muda quem se dá
- * ao trabalho de entrar em contato: obra de mineração e infraestrutura
- * raramente fica perto de um escritório.
+ * @ficticio A área de atendimento precisa ser confirmada. O DDD 32 dos sócios
+ * é da Zona da Mata mineira, então parti de Juiz de Fora — mas o DDD cobre
+ * várias cidades e o raio de atendimento é decisão comercial, não dedução.
  */
 export const atuacao = {
-  base: "Belo Horizonte / MG",
-  alcance: "Atendimento em todo o território nacional, com equipe mobilizada para o local do projeto.",
-  estados: ["Minas Gerais", "Goiás", "Bahia", "Espírito Santo", "São Paulo"],
+  base: "Juiz de Fora / MG",
+  alcance: "Atendimento em Juiz de Fora e região da Zona da Mata mineira.",
+  estados: ["Juiz de Fora", "Zona da Mata", "Minas Gerais"],
 };

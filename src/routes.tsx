@@ -3,7 +3,7 @@ import { Layout } from "@/components/site/Layout";
 import Index from "@/pages/Index";
 import Sobre from "@/pages/Sobre";
 import Servicos from "@/pages/Servicos";
-import Projetos from "@/pages/Projetos";
+import AtuacaoPage from "@/pages/Atuacao";
 import Contato from "@/pages/Contato";
 import NotFound from "@/pages/NotFound";
 
@@ -20,7 +20,10 @@ export const routes: RouteObject[] = [
       { index: true, element: <Index /> },
       { path: "sobre", element: <Sobre /> },
       { path: "servicos", element: <Servicos /> },
-      { path: "projetos", element: <Projetos /> },
+      // /projetos saiu: os três cases eram inventados e a apresentação da G2
+      // não traz nenhum projeto entregue. Volta quando houver obra real para
+      // mostrar. No lugar entra /atuacao, que é conteúdo verdadeiro.
+      { path: "atuacao", element: <AtuacaoPage /> },
       { path: "contato", element: <Contato /> },
       { path: "*", element: <NotFound /> },
     ],
@@ -31,6 +34,6 @@ export const routes: RouteObject[] = [
 export const mainNav = [
   { label: "Sobre", to: "/sobre" },
   { label: "Serviços", to: "/servicos" },
-  { label: "Projetos", to: "/projetos" },
+  { label: "Atuação", to: "/atuacao" },
   { label: "Contato", to: "/contato" },
 ];
