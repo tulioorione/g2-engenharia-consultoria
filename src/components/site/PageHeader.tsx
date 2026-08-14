@@ -1,4 +1,39 @@
 import { motion } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { mainNav } from "@/routes";
+
+/** Agora que o site tem hierarquia, a página interna precisa dizer onde você está. */
+const Trilha = () => {
+  const { pathname } = useLocation();
+  const atual = mainNav.find((i) => i.to === pathname);
+  if (!atual) return null;
+
+  return (
+    <Breadcrumb aria-label="Trilha de navegação" className="mb-8">
+      <BreadcrumbList className="text-primary-foreground/60">
+        <BreadcrumbItem>
+          <BreadcrumbLink asChild>
+            <Link to="/" className="transition-colors hover:text-primary-foreground">
+              Início
+            </Link>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage className="text-primary-foreground">{atual.label}</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+};
 
 /** Cabeçalho das páginas internas. O padding do topo compensa o header fixo. */
 export const PageHeader = ({
@@ -20,6 +55,7 @@ export const PageHeader = ({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
+        <Trilha />
         <div className="eyebrow text-silver mb-6">
           <span className="inline-block h-px w-8 bg-silver" />
           {eyebrow}
