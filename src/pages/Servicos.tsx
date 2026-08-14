@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/site/PageHeader";
 import { Services } from "@/components/site/Services";
+import { Riscos } from "@/components/site/Riscos";
 import { Process } from "@/components/site/Process";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { Seo } from "@/components/site/Seo";
@@ -18,6 +19,7 @@ const Servicos = () => (
       intro="Duas frentes que se conversam: quem levanta a parede e quem controla o orçamento trabalham na mesma equipe."
     />
     <Services />
+    <Riscos />
     <Process />
     <FinalCTA />
   </>
