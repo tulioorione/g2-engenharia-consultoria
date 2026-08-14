@@ -1,11 +1,37 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { institucional } from "@/config/atuacao";
-import aboutImage from "@/assets/sobre-capacete.webp";
-import aboutImage640 from "@/assets/sobre-capacete-640.webp";
+import homeImage from "@/assets/equipe-campo.webp";
+import homeImage640 from "@/assets/equipe-campo-640.webp";
+import sobreImage from "@/assets/sobre-capacete.webp";
+import sobreImage640 from "@/assets/sobre-capacete-640.webp";
+
+/**
+ * O mesmo componente serve a home e a página /sobre, então a imagem tem de
+ * variar junto: na home entra o profissional em campo, e em /sobre o retrato
+ * com o capacete e a planta ao fundo.
+ */
+const imagens = {
+  home: {
+    src: homeImage,
+    src640: homeImage640,
+    largura: 1029,
+    altura: 1548,
+    alt: "Profissional da G2 com cinto de segurança durante serviço em telhado",
+  },
+  sobre: {
+    src: sobreImage,
+    src640: sobreImage640,
+    largura: 1100,
+    altura: 1650,
+    alt: "Profissional de engenharia segurando capacete de obra, com planta de projeto ao fundo",
+  },
+};
 
 /** `compact` é a versão da home: só a chamada, com link para a página Sobre. */
 export const About = ({ compact = false }: { compact?: boolean }) => {
+  const imagem = compact ? imagens.home : imagens.sobre;
+
   return (
     <section id="sobre" className="relative bg-background py-24 md:py-32">
       <div className="container-cz grid gap-16 lg:grid-cols-2 lg:gap-24">
@@ -70,14 +96,14 @@ export const About = ({ compact = false }: { compact?: boolean }) => {
         >
           <div className="aspect-[4/5] overflow-hidden bg-muted">
             <img
-              src={aboutImage}
-              srcSet={`${aboutImage640} 640w, ${aboutImage} 1280w`}
+              src={imagem.src}
+              srcSet={`${imagem.src640} 640w, ${imagem.src} 1100w`}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              alt="Profissional de engenharia segurando capacete de obra, com planta de projeto ao fundo"
+              alt={imagem.alt}
               loading="lazy"
               decoding="async"
-              width={1100}
-              height={1650}
+              width={imagem.largura}
+              height={imagem.altura}
               className="h-full w-full object-cover"
             />
           </div>
