@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import { ClientOnly } from "vite-react-ssg";
 import { AppProviders } from "@/App";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { BackToTop } from "@/components/site/BackToTop";
+import { WhatsAppFlutuante } from "@/components/site/WhatsAppFlutuante";
 import { DadosEstruturados } from "@/components/site/DadosEstruturados";
 
 /** Sem isto, trocar de rota mantém a posição do scroll e a página nova abre no meio. */
@@ -37,6 +39,8 @@ export const Layout = () => {
         </main>
         <Footer />
         <BackToTop />
+        {/* Portais e window ficam no cliente; o SSG renderiza no Node. */}
+        <ClientOnly>{() => <WhatsAppFlutuante />}</ClientOnly>
       </div>
     </AppProviders>
   );

@@ -27,7 +27,8 @@ export const BackToTop = () => {
         window.scrollTo({ top: 0, behavior: reduceMotion ? "instant" : "smooth" })
       }
       aria-label="Voltar ao topo da página"
-      className="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center border border-silver/40 bg-primary/90 text-primary-foreground backdrop-blur-sm transition-colors duration-300 hover:bg-primary-steel"
+      /* Empilhado acima do botão de WhatsApp, que ocupa o canto. */
+      className="fixed bottom-24 right-[1.6rem] z-40 flex h-11 w-11 items-center justify-center border border-silver/40 bg-primary/90 text-primary-foreground backdrop-blur-sm transition-colors duration-300 hover:bg-primary-steel"
     >
       <ArrowUp className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
     </button>

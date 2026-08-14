@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { MemoryRouter, useRoutes } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { routes } from "@/routes";
@@ -53,6 +54,18 @@ describe("rotas", () => {
     // teste existe para o fetchpriority não sumir sem ninguém perceber.
     expect(hero).toHaveAttribute("fetchpriority", "high");
     expect(hero).toHaveAttribute("srcset");
+  });
+
+  it("oferece os dois sócios no WhatsApp flutuante", async () => {
+    const user = userEvent.setup();
+    renderRoute("/");
+    const botao = await screen.findByRole("button", { name: /falar no whatsapp/i });
+    await user.click(botao);
+    // Escopado na lista do widget: o CTA final da home também tem links wa.me.
+    const lista = screen.getByRole("list", { name: /sócios disponíveis no whatsapp/i });
+    const links = within(lista).getAllByRole("link");
+    expect(links).toHaveLength(2);
+    links.forEach((a) => expect(a.getAttribute("href")).toMatch(/^https:\/\/wa\.me\/55\d{10,}$/));
   });
 
   it("não deixa nenhum link apontando para href vazio", () => {
