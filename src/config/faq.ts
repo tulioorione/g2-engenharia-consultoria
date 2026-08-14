@@ -30,8 +30,12 @@ export const faq = [
     a: "Com cronograma físico-financeiro e relatório de gastos por etapa. A ideia é você saber exatamente onde cada centavo está sendo investido, sem precisar perguntar.",
   },
   {
-    q: "Fazem laudo técnico?",
-    a: "Sim, para imóvel residencial. É um dos serviços da frente residencial, junto com reforma de apartamento e construção de casa.",
+    q: "Preciso de laudo para reformar meu apartamento?",
+    a: "Se for em condomínio, sim. A NBR 16280 exige um plano de reforma com ART, assinado por profissional habilitado e entregue ao síndico antes de a obra começar — vale até para troca de piso ou remoção de parede. Emitimos o laudo e falamos com a administração do prédio.",
+  },
+  {
+    q: "Sou síndico. O que devo exigir de um morador que vai reformar?",
+    a: "O plano de reforma previsto na NBR 16280, com ART do responsável técnico, antes de autorizar a entrada de material ou de equipe. Sem isso, a responsabilidade por qualquer dano à estrutura pode recair sobre a administração. Analisamos esses planos para condomínios.",
   },
 ];
 

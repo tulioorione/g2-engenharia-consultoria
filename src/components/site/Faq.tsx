@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Head } from "vite-react-ssg";
 import {
   Accordion,
   AccordionContent,
@@ -7,9 +8,33 @@ import {
 } from "@/components/ui/accordion";
 import { faq } from "@/config/faq";
 
+/**
+ * O accordion do Radix desmonta o painel fechado, então as RESPOSTAS não
+ * chegavam ao HTML pré-renderizado — só as perguntas. Como o FAQ é o melhor
+ * conteúdo de busca do site (são as frases exatas que as pessoas digitam),
+ * isso anulava o ganho inteiro.
+ *
+ * O JSON-LD FAQPage resolve pelo caminho certo: coloca pergunta e resposta no
+ * HTML de forma legível por máquina e habilita o resultado rico do Google.
+ * Forçar o painel aberto no DOM quebraria a animação de fechar, que não tem
+ * fill-mode e faria o conteúdo reaparecer ao fim do movimento.
+ */
+const dadosEstruturados = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export const Faq = () => {
   return (
     <section id="faq" className="relative bg-secondary py-24 md:py-32">
+      <Head>
+        <script type="application/ld+json">{JSON.stringify(dadosEstruturados)}</script>
+      </Head>
       <div className="container-cz">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
           <motion.div

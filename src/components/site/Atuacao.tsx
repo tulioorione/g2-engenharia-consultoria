@@ -52,7 +52,12 @@ export const Atuacao = ({ compact = false }: { compact?: boolean }) => {
             >
               <a.icon className="h-7 w-7 text-accent" strokeWidth={1.25} aria-hidden="true" />
               <h3 className="mt-6 text-2xl text-primary">{a.nome}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{a.desc}</p>
+              {/* A dor primeiro, a solução depois: cada área fala com um
+                  comprador diferente, e o medo dele é o que prende a leitura. */}
+              <p className="mt-4 border-l-2 border-accent pl-4 text-sm italic leading-relaxed text-primary">
+                {a.dor}
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{a.desc}</p>
               {!compact && (
                 <ul className="mt-6 space-y-2 border-t border-border pt-5">
                   {a.itens.map((item) => (
