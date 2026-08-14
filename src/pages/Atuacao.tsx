@@ -1,7 +1,5 @@
 import { PageHeader } from "@/components/site/PageHeader";
 import { Atuacao } from "@/components/site/Atuacao";
-import { Exigencias } from "@/components/site/Exigencias";
-import { LaudoReforma } from "@/components/site/LaudoReforma";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { motion } from "framer-motion";
 import { Seo } from "@/components/site/Seo";
@@ -21,9 +19,10 @@ const AtuacaoPage = () => (
       highlight="acontece."
       intro="Obra predial e reforma, do apartamento ao condomínio inteiro."
     />
+    {/* As exigências e o laudo NBR 16280 vivem nas páginas de cada área.
+        Aqui eles eram repetição: esta página é um cruzamento — o trabalho
+        dela é fazer a pessoa se reconhecer numa das três e seguir. */}
     <Atuacao />
-    <Exigencias />
-    <LaudoReforma />
 
     <motion.div
       initial={{ opacity: 0 }}

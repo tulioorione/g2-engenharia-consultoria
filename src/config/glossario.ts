@@ -1,9 +1,10 @@
 /**
  * Glossário dos termos que aparecem no próprio site e nos documentos de obra.
  *
- * Não há nada de inventado aqui: são definições técnicas e normativas. Por
- * isso o arquivo não leva marcação @ficticio — é o único bloco de conteúdo do
- * site que pode ir ao ar sem passar pelos sócios.
+ * Não há nada de inventado aqui: são definições técnicas e normativas. É o
+ * único bloco de conteúdo do site que pode ir ao ar sem passar pelos sócios,
+ * e por isso o arquivo não leva marcação de conteúdo fictício — o termo não
+ * aparece nem neste comentário, para não sujar o inventário do `grep`.
  *
  * Serve a dois propósitos. Para quem lê, tira o jargão da frente da decisão.
  * Para busca, são exatamente os termos que alguém digita quando recebeu um
