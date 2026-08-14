@@ -4,7 +4,7 @@ import { atuacao, credenciais } from "@/config/credenciais";
 
 export const Credenciais = () => {
   return (
-    <section id="credenciais" className="relative bg-primary py-24 md:py-32">
+    <section id="credenciais" className="relative bg-primary secao">
       <div className="absolute inset-0 bg-gradient-navy-radial opacity-70" />
       <div className="container-cz relative">
         <motion.div

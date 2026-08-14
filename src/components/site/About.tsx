@@ -33,7 +33,7 @@ export const About = ({ compact = false }: { compact?: boolean }) => {
   const imagem = compact ? imagens.home : imagens.sobre;
 
   return (
-    <section id="sobre" className="relative bg-background py-24 md:py-32">
+    <section id="sobre" className="relative bg-background secao">
       <div className="container-cz grid gap-16 lg:grid-cols-2 lg:gap-24">
         <motion.div
           initial={{ opacity: 0, x: -30 }}

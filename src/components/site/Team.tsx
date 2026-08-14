@@ -13,7 +13,7 @@ const iniciais = (nome: string) =>
 
 export const Team = () => {
   return (
-    <section id="equipe" className="relative bg-background py-24 md:py-32">
+    <section id="equipe" className="relative bg-secondary secao">
       <div className="container-cz">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

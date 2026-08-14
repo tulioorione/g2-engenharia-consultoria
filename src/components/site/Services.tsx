@@ -11,7 +11,7 @@ import { diferencialEquipe, grupos, servicos } from "@/config/servicos";
  */
 export const Services = ({ compact = false }: { compact?: boolean }) => {
   return (
-    <section id="servicos" className="relative bg-gradient-navy-radial py-24 md:py-32">
+    <section id="servicos" className="relative bg-gradient-navy-radial secao-densa">
       <div className="container-cz">
         {/* Só na home. Em /servicos o PageHeader já traz este título e esta
             mesma introdução — repetir aqui gerava um h2 igual ao h1 acima. */}

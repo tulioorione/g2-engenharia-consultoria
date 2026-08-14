@@ -31,7 +31,7 @@ const dadosEstruturados = {
 
 export const Faq = () => {
   return (
-    <section id="faq" className="relative bg-secondary py-24 md:py-32">
+    <section id="faq" className="relative bg-secondary secao-densa">
       <Head>
         <script type="application/ld+json">{JSON.stringify(dadosEstruturados)}</script>
       </Head>

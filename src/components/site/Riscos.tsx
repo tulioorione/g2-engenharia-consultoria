@@ -15,7 +15,7 @@ import { riscos } from "@/config/riscos";
  */
 export const Riscos = () => {
   return (
-    <section id="riscos" className="relative bg-background py-24 md:py-28">
+    <section id="riscos" className="relative bg-background secao-densa">
       <div className="container-cz">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -11,7 +11,7 @@ import { diferenciais } from "@/config/atuacao";
  */
 export const Diferenciais = () => {
   return (
-    <section className="relative border-y border-border bg-background py-24 md:py-28">
+    <section className="relative border-y border-border bg-background secao">
       <div className="container-cz">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

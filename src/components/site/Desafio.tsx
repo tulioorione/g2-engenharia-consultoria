@@ -9,8 +9,10 @@ import { desafioCliente } from "@/config/atuacao";
  */
 export const Desafio = () => {
   return (
-    <section className="relative overflow-hidden bg-primary py-24 md:py-32">
-      <div className="absolute inset-0 bg-gradient-navy-radial opacity-70" />
+    <section className="relative overflow-hidden bg-primary secao-ar">
+      {/* Sem o gradiente radial de propósito: a seção de serviços, que vem
+          logo abaixo, usa exatamente esse gradiente. Com os dois, as duas
+          seções escuras viravam um bloco só. Aqui o navy fica chapado. */}
       <div className="container-cz relative">
         <div className="grid gap-px bg-silver/10 md:grid-cols-2">
           <motion.div

@@ -140,6 +140,22 @@
   .container-cz {
     @apply mx-auto w-full max-w-[1320px] px-6 md:px-10;
   }
+
+  /* Ritmo vertical — três alturas, não uma só.
+     Antes toda seção usava o mesmo py-24 md:py-32, o que dava à página um
+     compasso plano: seção com dez itens e seção com duas frases respiravam
+     igual, e a curta parecia sobra de espaço.
+     A regra é inversa ao volume: quanto mais conteúdo, menos respiro
+     precisa — o próprio conteúdo dá peso à seção. */
+  .secao {
+    @apply py-24 md:py-32;
+  }
+  .secao-densa {
+    @apply py-20 md:py-24;
+  }
+  .secao-ar {
+    @apply py-28 md:py-40;
+  }
   .eyebrow {
     @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em];
   }

@@ -13,7 +13,7 @@ import { exigencias } from "@/config/exigencias";
  */
 export const Exigencias = () => {
   return (
-    <section id="exigencias" className="relative bg-background py-24 md:py-28">
+    <section id="exigencias" className="relative bg-background secao-densa">
       <div className="container-cz">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

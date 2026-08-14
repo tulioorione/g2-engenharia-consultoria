@@ -23,7 +23,7 @@ const dadosEstruturados = {
 
 export const Glossario = () => {
   return (
-    <section id="glossario" className="relative bg-secondary py-24 md:py-28">
+    <section id="glossario" className="relative bg-background secao-densa">
       <Head>
         <script type="application/ld+json">{JSON.stringify(dadosEstruturados)}</script>
       </Head>

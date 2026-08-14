@@ -12,8 +12,10 @@ import { laudoReforma } from "@/config/atuacao";
  * a pessoa realmente digita, ao contrário de "laudos técnicos".
  */
 export const LaudoReforma = () => {
+  // Faixa, não seção: é um destaque horizontal entre duas seções, e por isso
+  // fica fora da escala .secao / .secao-densa / .secao-ar.
   return (
-    <section className="relative bg-primary-deep py-20 md:py-24">
+    <section className="relative bg-primary-deep py-16 md:py-20">
       <div className="container-cz">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

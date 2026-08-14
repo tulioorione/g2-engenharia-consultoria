@@ -10,7 +10,7 @@ import { areasAtuacao } from "@/config/atuacao";
  */
 export const Atuacao = ({ compact = false }: { compact?: boolean }) => {
   return (
-    <section id="atuacao" className="relative bg-secondary py-24 md:py-32">
+    <section id="atuacao" className="relative bg-secondary secao">
       <div className="container-cz">
         {/* Só na home. Em /atuacao o PageHeader já traz este eyebrow e este
             título — repetir aqui gerava um h2 igual ao h1 logo acima. */}

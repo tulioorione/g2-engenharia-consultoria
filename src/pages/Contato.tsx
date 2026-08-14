@@ -35,7 +35,7 @@ const Contato = () => (
       intro="Fale direto com um dos sócios. Conte o que sua obra precisa — sem custo pela primeira conversa."
     />
 
-    <section className="relative bg-background py-24 md:py-32">
+    <section className="relative bg-background secao">
       <div className="container-cz">
         {/* São 4 canais (os dois sócios, e-mail e endereço). Em 3 colunas o
             quarto ficava sozinho numa segunda linha. */}
