@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { AppProviders } from "@/App";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { BackToTop } from "@/components/site/BackToTop";
 
 /** Sem isto, trocar de rota mantém a posição do scroll e a página nova abre no meio. */
 const ScrollToTop = () => {
@@ -33,6 +34,7 @@ export const Layout = () => {
           <Outlet />
         </main>
         <Footer />
+        <BackToTop />
       </div>
     </AppProviders>
   );

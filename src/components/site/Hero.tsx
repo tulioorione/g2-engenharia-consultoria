@@ -5,8 +5,10 @@ import hero1280 from "@/assets/hero-construction-1280.webp";
 import hero768 from "@/assets/hero-construction-768.webp";
 
 export const Hero = () => {
+  // min-h-svh em vez de min-h-screen: no celular, 100vh inclui a área da barra
+  // de endereço, o que faz o conteúdo pular quando ela recolhe.
   return (
-    <section id="home" className="relative flex min-h-screen items-center overflow-hidden bg-primary">
+    <section id="home" className="relative flex min-h-svh items-center overflow-hidden bg-primary">
       <div className="absolute inset-0">
         <img
           src={heroImage}
@@ -26,7 +28,9 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-primary/30 mix-blend-multiply" />
       </div>
 
-      <div className="container-cz relative z-10 pt-32 pb-24">
+      {/* Em tela baixa (celular deitado) 224px de padding sobram quase nada
+          para o conteúdo, e a seção cresce muito além da dobra. */}
+      <div className="container-cz relative z-10 pt-32 pb-24 [@media(max-height:640px)]:pt-24 [@media(max-height:640px)]:pb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -82,7 +86,9 @@ export const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 1 }}
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-silver"
+        /* Em tela baixa o indicador se sobrepõe aos botões e não diz nada de
+           útil — a rolagem já é evidente quando o conteúdo passa da dobra. */
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-silver [@media(max-height:640px)]:hidden"
       >
         <div className="flex flex-col items-center gap-3">
           <span className="text-[10px] uppercase tracking-[0.3em]">Role</span>

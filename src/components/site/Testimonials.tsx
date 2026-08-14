@@ -1,5 +1,27 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+
+/** Os pontinhos sozinhos não davam como avançar sem saber qual índice escolher. */
+const SetaDepoimento = ({
+  direcao,
+  onClick,
+}: {
+  direcao: "anterior" | "próximo";
+  onClick: () => void;
+}) => {
+  const Icone = direcao === "anterior" ? ChevronLeft : ChevronRight;
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={`Depoimento ${direcao}`}
+      className="flex h-10 w-10 items-center justify-center border border-silver/30 text-silver transition-colors duration-300 hover:border-silver hover:text-primary-foreground"
+    >
+      <Icone className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+    </button>
+  );
+};
 
 const testimonials = [
   {
@@ -80,7 +102,18 @@ export const Testimonials = () => {
           </AnimatePresence>
         </div>
 
-        <div className="mt-12 flex gap-2">
+        <div className="mt-12 flex items-center gap-6">
+          <div className="flex gap-2">
+            <SetaDepoimento
+              direcao="anterior"
+              onClick={() => setI((p) => (p - 1 + testimonials.length) % testimonials.length)}
+            />
+            <SetaDepoimento
+              direcao="próximo"
+              onClick={() => setI((p) => (p + 1) % testimonials.length)}
+            />
+          </div>
+          <div className="flex gap-2">
           {testimonials.map((_, idx) => (
             <button
               key={idx}
@@ -98,6 +131,7 @@ export const Testimonials = () => {
               />
             </button>
           ))}
+          </div>
         </div>
       </div>
     </section>
