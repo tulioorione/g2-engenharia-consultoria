@@ -4,6 +4,7 @@ import { AppProviders } from "@/App";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { BackToTop } from "@/components/site/BackToTop";
+import { DadosEstruturados } from "@/components/site/DadosEstruturados";
 
 /** Sem isto, trocar de rota mantém a posição do scroll e a página nova abre no meio. */
 const ScrollToTop = () => {
@@ -22,6 +23,7 @@ export const Layout = () => {
   return (
     <AppProviders>
       <div className="min-h-screen bg-background">
+        <DadosEstruturados />
         <ScrollToTop />
         <a
           href="#conteudo"

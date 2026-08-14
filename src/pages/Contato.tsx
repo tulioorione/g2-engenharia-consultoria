@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Faq } from "@/components/site/Faq";
-import { contato } from "@/config/contato";
+import { contato, enderecoCompleto } from "@/config/contato";
 import { proximosPassos } from "@/config/faq";
 import { Seo } from "@/components/site/Seo";
 
 const canais = [
   { icon: Mail, label: "E-mail", value: contato.email, href: `mailto:${contato.email}` },
   { icon: Phone, label: "Telefone", value: contato.telefoneExibido, href: contato.telefoneHref },
-  { icon: MapPin, label: "Endereço", value: contato.endereco },
+  { icon: MapPin, label: "Endereço", value: enderecoCompleto },
 ];
 
 const Contato = () => (

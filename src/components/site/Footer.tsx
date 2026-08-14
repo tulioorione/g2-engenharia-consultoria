@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { contato, redesSociais } from "@/config/contato";
+import { contato, enderecoCompleto, redesSociais } from "@/config/contato";
 import { servicos } from "@/config/servicos";
 
 export const Footer = () => {
@@ -39,7 +39,7 @@ export const Footer = () => {
           <div>
             <div className="text-xs uppercase tracking-[0.2em] text-silver mb-5">Contato</div>
             <ul className="space-y-3 text-sm text-primary-foreground/70">
-              <li>{contato.endereco}</li>
+              <li>{enderecoCompleto}</li>
               <li>
                 <a className="hover:text-accent-on-dark transition-colors" href={contato.telefoneHref}>
                   {contato.telefoneExibido}
