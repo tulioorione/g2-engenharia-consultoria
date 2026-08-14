@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { institucional } from "@/config/atuacao";
-import aboutImage from "@/assets/equipe-campo.webp";
-import aboutImage640 from "@/assets/equipe-campo-640.webp";
+import aboutImage from "@/assets/sobre-capacete.webp";
+import aboutImage640 from "@/assets/sobre-capacete-640.webp";
 
 /** `compact` é a versão da home: só a chamada, com link para a página Sobre. */
 export const About = ({ compact = false }: { compact?: boolean }) => {
@@ -73,11 +73,11 @@ export const About = ({ compact = false }: { compact?: boolean }) => {
               src={aboutImage}
               srcSet={`${aboutImage640} 640w, ${aboutImage} 1280w`}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              alt="Profissional da G2 com equipamento de proteção durante serviço em telhado"
+              alt="Profissional de engenharia segurando capacete de obra, com planta de projeto ao fundo"
               loading="lazy"
               decoding="async"
-              width={1029}
-              height={1548}
+              width={1100}
+              height={1650}
               className="h-full w-full object-cover"
             />
           </div>
