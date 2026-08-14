@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import simboloNavy from "@/assets/g2-simbolo-navy.webp";
 
 const NotFound = () => {
   const location = useLocation();
@@ -10,7 +11,16 @@ const NotFound = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-6">
-      <div className="text-center">
+      <div className="flex flex-col items-center text-center">
+        {/* Única página de fundo claro sem marca — aqui entra a versão navy. */}
+        <img
+          src={simboloNavy}
+          alt=""
+          aria-hidden="true"
+          width={230}
+          height={265}
+          className="mb-10 h-14 w-auto opacity-90"
+        />
         <div className="font-display text-7xl text-primary md:text-8xl">404</div>
         <p className="mt-6 text-lg text-muted-foreground">
           Esta página não existe ou foi movida.

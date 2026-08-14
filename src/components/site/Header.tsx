@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { NavLink } from "@/components/NavLink";
 import { mainNav } from "@/routes";
+import logoClaro from "@/assets/g2-logo-claro.webp";
+import simboloClaro from "@/assets/g2-simbolo-claro.webp";
 
 export const Header = () => {
   const { scrollY } = useScroll();
@@ -37,14 +39,25 @@ export const Header = () => {
       }`}
     >
       <div className="container-cz flex h-full items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 text-primary-foreground" aria-label="G2 Engenharia — início">
-          <div className="flex h-9 w-9 items-center justify-center border border-silver/40 bg-gradient-silver text-primary font-display text-lg font-medium">
-            G2
-          </div>
-          <div className="hidden flex-col leading-tight sm:flex">
-            <span className="text-sm font-semibold tracking-tight">G2 Engenharia</span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-silver">Consultoria</span>
-          </div>
+        {/* O header fica sempre sobre navy — transparente por cima do hero
+            escuro, ou bg-primary depois de rolar. Por isso a versão clara do
+            logotipo. Em tela estreita entra só o símbolo: a assinatura
+            "Engenharia e Consultoria" ficaria ilegível nesse tamanho. */}
+        <Link to="/" className="flex items-center" aria-label="G2 Engenharia e Consultoria — início">
+          <img
+            src={logoClaro}
+            alt="G2 Engenharia e Consultoria"
+            width={300}
+            height={138}
+            className="hidden h-9 w-auto sm:block"
+          />
+          <img
+            src={simboloClaro}
+            alt="G2 Engenharia e Consultoria"
+            width={123}
+            height={138}
+            className="h-8 w-auto sm:hidden"
+          />
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Navegação principal">

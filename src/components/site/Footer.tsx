@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { contato, enderecoCompleto, redesSociais } from "@/config/contato";
 import { servicos } from "@/config/servicos";
+import logoClaro from "@/assets/g2-logo-claro.webp";
 
 export const Footer = () => {
   // O fundo do rodapé fica um degrau abaixo do primary-deep, para fechar a página.
@@ -9,14 +10,15 @@ export const Footer = () => {
       <div className="container-cz py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link to="/" className="flex items-center gap-2" aria-label="G2 Engenharia — início">
-              <div className="flex h-9 w-9 items-center justify-center border border-silver/40 bg-gradient-silver text-primary font-display text-lg">
-                G2
-              </div>
-              <div className="leading-tight">
-                <div className="text-sm font-semibold">G2 Engenharia</div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-silver">Consultoria</div>
-              </div>
+            <Link to="/" className="inline-block" aria-label="G2 Engenharia e Consultoria — início">
+              <img
+                src={logoClaro}
+                alt="G2 Engenharia e Consultoria"
+                width={300}
+                height={138}
+                loading="lazy"
+                className="h-11 w-auto"
+              />
             </Link>
             <p className="mt-6 text-sm text-primary-foreground/60 max-w-xs leading-relaxed">
               Engenharia e consultoria com a precisão que seu projeto exige.
