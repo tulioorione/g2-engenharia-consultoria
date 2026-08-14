@@ -1,6 +1,7 @@
 import { PageHeader } from "@/components/site/PageHeader";
 import { About } from "@/components/site/About";
 import { Team } from "@/components/site/Team";
+import { Credenciais } from "@/components/site/Credenciais";
 import { Sectors } from "@/components/site/Sectors";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { Seo } from "@/components/site/Seo";
@@ -20,6 +21,7 @@ const Sobre = () => (
     />
     <About />
     <Team />
+    <Credenciais />
     <Sectors />
     <FinalCTA />
   </>

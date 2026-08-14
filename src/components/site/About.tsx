@@ -38,24 +38,17 @@ export const About = ({ compact = false }: { compact?: boolean }) => {
             </p>
           )}
 
-          {compact ? (
+          {/* Os selos "CREA" e "ISO 9001" que ficavam aqui saíram: eram duas
+              palavras sem número, e agora existe a seção Credenciais, que os
+              mostra com registro, apólice e normas. Manter os dois seria
+              repetir a mesma informação de forma mais fraca. */}
+          {compact && (
             <Link
               to="/sobre"
               className="mt-10 inline-flex items-center gap-3 self-start border-b border-primary pb-2 text-sm font-medium uppercase tracking-[0.15em] text-primary transition-all duration-500 hover:gap-5 hover:border-accent hover:text-accent"
             >
               Conheça a G2 →
             </Link>
-          ) : (
-            <div className="mt-10 flex flex-wrap gap-x-12 gap-y-6 border-t border-border pt-8">
-              <div>
-                <div className="font-serif text-3xl text-primary">CREA</div>
-                <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground mt-1">Registro técnico ativo</div>
-              </div>
-              <div>
-                <div className="font-serif text-3xl text-primary">ISO 9001</div>
-                <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground mt-1">Gestão da qualidade</div>
-              </div>
-            </div>
           )}
         </motion.div>
 
