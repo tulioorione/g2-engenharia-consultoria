@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/site/PageHeader";
 import { Atuacao } from "@/components/site/Atuacao";
+import { Exigencias } from "@/components/site/Exigencias";
 import { LaudoReforma } from "@/components/site/LaudoReforma";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { motion } from "framer-motion";
@@ -21,6 +22,7 @@ const AtuacaoPage = () => (
       intro="Obra predial e reforma, do apartamento ao condomínio inteiro."
     />
     <Atuacao />
+    <Exigencias />
     <LaudoReforma />
 
     <motion.div
