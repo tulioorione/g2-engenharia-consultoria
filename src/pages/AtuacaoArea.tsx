@@ -20,22 +20,34 @@ import { exigencias } from "@/config/exigencias";
  * Todo o conteúdo já existia — a dor, os itens da apresentação, as exigências
  * reais daquele tipo de obra e as perguntas do FAQ que se aplicam.
  */
-const textos: Record<string, { titulo: string; destaque: string; descricao: string }> = {
+/**
+ * `seoTitle` é escrito à mão, e não montado a partir do título da página.
+ * Compondo "nome da área + título + destaque + marca" o resultado passava de
+ * 70 caracteres e o Google cortava justamente a marca no fim. Aqui cada um
+ * cabe no corte de ~60 e começa pelo termo que a pessoa realmente digita.
+ */
+const textos: Record<
+  string,
+  { titulo: string; destaque: string; seoTitle: string; descricao: string }
+> = {
   residencial: {
     titulo: "Reforma e construção",
     destaque: "para quem mora.",
+    seoTitle: "Reforma de apartamento e casa em Juiz de Fora | G2",
     descricao:
       "Reforma de apartamento, construção de casa e laudo técnico em Juiz de Fora e região. Escopo fechado, com responsável técnico do começo ao fim.",
   },
   comercial: {
     titulo: "Adequação de ponto comercial",
     destaque: "com prazo em contrato.",
+    seoTitle: "Reforma de loja e escritório chave na mão | G2",
     descricao:
       "Reforma de loja, escritório e consultório com entrega chave na mão. Prazo assumido em cláusula, porque dia parado é faturamento perdido.",
   },
   condominios: {
     titulo: "Manutenção predial",
     destaque: "com prestação de contas.",
+    seoTitle: "Manutenção predial para condomínios | G2 Engenharia",
     descricao:
       "Manutenção preventiva pela NBR 5674, gestão de obras de melhoria e análise de plano de reforma de morador, com a documentação que o conselho cobra.",
   },
@@ -50,7 +62,7 @@ export const AtuacaoArea = ({ slug }: { slug: string }) => {
   return (
     <>
       <Seo
-        title={`${area.nome} — ${texto.titulo} ${texto.destaque} | G2 Engenharia`}
+        title={texto.seoTitle}
         description={texto.descricao}
         path={`/atuacao/${slug}`}
       />

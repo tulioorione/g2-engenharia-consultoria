@@ -9,8 +9,8 @@ import fachadaSm from "@/assets/fachada-800.webp";
 const AtuacaoPage = () => (
   <>
     <Seo
-      title="Áreas de atuação — Reforma, laudo NBR 16280 e manutenção predial"
-      description="Reforma e construção residencial, adequação de lojas com entrega chave na mão e manutenção predial em condomínios. Emitimos laudo de reforma conforme a NBR 16280."
+      title="Áreas de atuação — Residencial, comercial e condomínios"
+      description="Reforma residencial, adequação de lojas com entrega chave na mão e manutenção predial em condomínios."
       path="/atuacao"
     />
     <PageHeader

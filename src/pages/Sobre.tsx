@@ -9,7 +9,7 @@ import { Seo } from "@/components/site/Seo";
 const Sobre = () => (
   <>
     <Seo
-      title="Sobre a G2 — Engenharia levada a sério, do parafuso ao cronograma"
+      title="Sobre a G2 — Engenharia do parafuso ao cronograma"
       description="Unimos a excelência técnica na execução de serviços com a inteligência no gerenciamento de obras."
       path="/sobre"
     />

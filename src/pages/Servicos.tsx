@@ -9,7 +9,7 @@ const Servicos = () => (
   <>
     <Seo
       title="Serviços — Execução, manutenção, orçamento e gestão de obras"
-      description="Construção civil, serviços estruturais e manutenção. E do lado da gestão: orçamento de obras, acompanhamento técnico, controle de caixa e cronograma físico-financeiro."
+      description="Construção civil, serviços estruturais e manutenção. Do lado da gestão: orçamento, acompanhamento técnico, controle de caixa e cronograma."
       path="/servicos"
     />
     <PageHeader

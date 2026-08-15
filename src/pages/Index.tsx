@@ -17,7 +17,7 @@ import { Seo } from "@/components/site/Seo";
 const Index = () => (
   <>
     <Seo
-      title="G2 Engenharia e Consultoria — Da execução ao gerenciamento da sua obra"
+      title="G2 Engenharia — Reforma e gestão de obras em Juiz de Fora"
       description="Construção civil, serviços estruturais e manutenção, com orçamento, cronograma e controle de caixa. Obra residencial, comercial e de condomínios."
       path="/"
     />
