@@ -15,8 +15,7 @@ const Sobre = () => (
     />
     <PageHeader
       eyebrow="Quem somos"
-      title="Engenharia"
-      highlight="que resolve."
+      title="Engenharia de execução e de gestão"
       intro="Unimos a excelência técnica na execução com a inteligência no gerenciamento de obras."
     />
     {/* "Por que escolher a G2" fica só na home: é argumento de conversão, e

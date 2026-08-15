@@ -27,7 +27,7 @@ export const Team = () => {
             Quem assina
           </div>
           <h2 className="text-4xl text-primary md:text-5xl lg:text-[56px] leading-[1.05]">
-            Projeto de engenharia <span className="font-display italic">tem nome.</span>
+            Quem responde tecnicamente pelo projeto
           </h2>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Quem responde tecnicamente pelo seu projeto, com registro profissional ativo.

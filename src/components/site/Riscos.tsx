@@ -29,8 +29,7 @@ export const Riscos = () => {
             Onde as obras descarrilam
           </div>
           <h2 className="text-4xl leading-[1.05] text-primary md:text-5xl">
-            Nenhuma obra estoura de uma vez.{" "}
-            <span className="font-display italic">Estoura aos poucos.</span>
+            As sete falhas que estouram um orçamento
           </h2>
           <p className="mt-6 max-w-xl leading-relaxed text-muted-foreground">
             São sempre as mesmas sete falhas, e todas acontecem antes de a primeira parede subir.

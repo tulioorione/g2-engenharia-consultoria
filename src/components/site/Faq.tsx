@@ -60,7 +60,7 @@ export const Faq = ({ area }: { area?: string }) => {
               Perguntas frequentes
             </div>
             <h2 className="text-4xl leading-[1.05] text-primary md:text-5xl">
-              O que perguntam <span className="font-display italic">antes de contratar.</span>
+              O que perguntam antes de contratar
             </h2>
           </motion.div>
 

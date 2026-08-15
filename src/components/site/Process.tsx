@@ -65,7 +65,7 @@ export const Process = () => {
               Como trabalhamos
             </div>
             <h2 className="max-w-3xl text-4xl md:text-5xl lg:text-[56px] leading-[1.05]">
-              Um método <span className="font-display italic text-silver-light">construído em cada projeto.</span>
+              Da visita técnica à entrega
             </h2>
           </motion.div>
 

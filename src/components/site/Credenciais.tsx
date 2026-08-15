@@ -19,8 +19,7 @@ export const Credenciais = () => {
             Credenciais e conformidade
           </div>
           <h2 className="text-4xl leading-[1.05] text-primary-foreground md:text-5xl">
-            O que sustenta{" "}
-            <span className="font-display italic text-silver-light">a assinatura.</span>
+            Registro, seguro e normas atendidas
           </h2>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-primary-foreground/75">
             Em engenharia, credencial sem número não passa numa habilitação. Estes são os

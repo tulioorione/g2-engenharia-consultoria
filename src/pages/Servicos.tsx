@@ -14,8 +14,7 @@ const Servicos = () => (
     />
     <PageHeader
       eyebrow="O que fazemos"
-      title="Da execução ao"
-      highlight="gerenciamento da sua obra."
+      title="Execução e gestão de obras"
       intro="Duas frentes que se conversam: quem levanta a parede e quem controla o orçamento trabalham na mesma equipe."
     />
     <Services />

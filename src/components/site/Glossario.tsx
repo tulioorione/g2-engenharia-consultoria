@@ -41,8 +41,7 @@ export const Glossario = () => {
             Glossário
           </div>
           <h2 className="text-4xl leading-[1.05] text-primary md:text-5xl">
-            Orçamento de obra tem palavra difícil.{" "}
-            <span className="font-display italic">Aqui elas estão explicadas.</span>
+            O que significa cada termo do orçamento
           </h2>
           <p className="mt-6 max-w-xl leading-relaxed text-muted-foreground">
             Se algum destes termos apareceu num orçamento que você recebeu — nosso ou de outro

@@ -86,7 +86,7 @@ const Contato = () => (
             className="max-w-xl"
           >
             <h2 className="text-3xl leading-[1.1] text-primary md:text-4xl">
-              Conte o que sua obra <span className="font-display italic">precisa.</span>
+              Conte o que sua obra precisa
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
               Escreva do seu jeito. Um dos sócios responde pessoalmente.
@@ -98,7 +98,7 @@ const Contato = () => (
 
           <div className="lg:pt-4">
             <h2 className="text-2xl leading-tight text-primary">
-              O que acontece <span className="font-display italic">depois.</span>
+              O que acontece depois
             </h2>
             <ol className="mt-8 space-y-8 border-l border-border pl-6">
               {proximosPassos.map((p, i) => (

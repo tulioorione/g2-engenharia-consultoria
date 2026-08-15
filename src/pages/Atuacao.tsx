@@ -15,8 +15,7 @@ const AtuacaoPage = () => (
     />
     <PageHeader
       eyebrow="Áreas de atuação"
-      title="Onde a engenharia"
-      highlight="acontece."
+      title="Residencial, comercial e condomínios"
       intro="Obra predial e reforma, do apartamento ao condomínio inteiro."
     />
     {/* As exigências e o laudo NBR 16280 vivem nas páginas de cada área.

@@ -28,25 +28,22 @@ import { exigencias } from "@/config/exigencias";
  */
 const textos: Record<
   string,
-  { titulo: string; destaque: string; seoTitle: string; descricao: string }
+  { titulo: string; seoTitle: string; descricao: string }
 > = {
   residencial: {
-    titulo: "Reforma e construção",
-    destaque: "para quem mora.",
+    titulo: "Reforma de apartamento e construção de casa",
     seoTitle: "Reforma de apartamento e casa em Juiz de Fora | G2",
     descricao:
       "Reforma de apartamento, construção de casa e laudo técnico em Juiz de Fora e região. Escopo fechado, com responsável técnico do começo ao fim.",
   },
   comercial: {
-    titulo: "Adequação de ponto comercial",
-    destaque: "com prazo em contrato.",
+    titulo: "Reforma de loja, escritório e consultório",
     seoTitle: "Reforma de loja e escritório chave na mão | G2",
     descricao:
       "Reforma de loja, escritório e consultório com entrega chave na mão. Prazo assumido em cláusula, porque dia parado é faturamento perdido.",
   },
   condominios: {
-    titulo: "Manutenção predial",
-    destaque: "com prestação de contas.",
+    titulo: "Manutenção predial e obras de melhoria",
     seoTitle: "Manutenção predial para condomínios | G2 Engenharia",
     descricao:
       "Manutenção preventiva pela NBR 5674, gestão de obras de melhoria e análise de plano de reforma de morador, com a documentação que o conselho cobra.",
@@ -69,7 +66,6 @@ export const AtuacaoArea = ({ slug }: { slug: string }) => {
       <PageHeader
         eyebrow={`Atuação · ${area.nome}`}
         title={texto.titulo}
-        highlight={texto.destaque}
         intro={area.dor}
       />
 

@@ -52,7 +52,7 @@ export const About = ({ compact = false }: { compact?: boolean }) => {
                 Quem somos
               </div>
               <h2 className="text-4xl leading-[1.05] text-primary md:text-5xl lg:text-[56px]">
-                Engenharia <span className="font-display italic">que resolve.</span>
+                Execução e gestão na mesma equipe
               </h2>
             </>
           )}

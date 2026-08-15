@@ -27,10 +27,10 @@ describe("rotas", () => {
   it.each([
     ["/", "Transformando desafios em"],
     ["/sobre", "Engenharia"],
-    ["/servicos", "Da execução ao"],
-    ["/atuacao", "Onde a engenharia"],
-    ["/atuacao/residencial", "Reforma e construção"],
-    ["/atuacao/comercial", "Adequação de ponto comercial"],
+    ["/servicos", "Execução e gestão de obras"],
+    ["/atuacao", "Residencial, comercial e condomínios"],
+    ["/atuacao/residencial", "Reforma de apartamento"],
+    ["/atuacao/comercial", "Reforma de loja"],
     ["/atuacao/condominios", "Manutenção predial"],
     ["/contato", "Vamos tirar seu projeto"],
   ])("renderiza %s com o título esperado", (path, titulo) => {

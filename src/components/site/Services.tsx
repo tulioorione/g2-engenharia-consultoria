@@ -29,10 +29,7 @@ export const Services = ({ compact = false }: { compact?: boolean }) => {
                 O que fazemos
               </div>
               <h2 className="max-w-3xl text-4xl leading-[1.05] text-primary-foreground md:text-5xl lg:text-[56px]">
-                Da execução ao{" "}
-                <span className="font-display italic text-silver-light">
-                  gerenciamento da sua obra.
-                </span>
+                Da execução ao gerenciamento da obra
               </h2>
             </div>
             <p className="max-w-sm text-primary-foreground/70">
