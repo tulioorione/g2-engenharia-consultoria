@@ -64,7 +64,10 @@ export const AtuacaoArea = ({ slug }: { slug: string }) => {
         path={`/atuacao/${slug}`}
       />
       <PageHeader
-        eyebrow={`Atuação · ${area.nome}`}
+        /* Só o nome da área: a trilha logo acima já diz que é dentro de
+           Atuação, e "Atuação · Residencial" em caixa alta grande quebraria
+           em duas linhas sem acrescentar nada. */
+        eyebrow={area.nome}
         title={texto.titulo}
         intro={area.dor}
       />
