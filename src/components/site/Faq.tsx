@@ -32,13 +32,21 @@ const montarEstrutura = (itens: typeof faq) => ({
 /** `area` filtra as perguntas para a página daquele público. */
 export const Faq = ({ area }: { area?: string }) => {
   const itens = area ? faq.filter((f) => f.areas.includes(area)) : faq;
-  const dadosEstruturados = montarEstrutura(itens);
+
+  // O JSON-LD sai só na página de contato, que tem o FAQ completo. Antes ele
+  // era declarado nas quatro páginas que mostram FAQ, repetindo as mesmas
+  // perguntas — o Google costuma honrar um FAQPage por site e ignorar os
+  // demais, então o excesso não ajudava e podia atrapalhar. As perguntas
+  // continuam visíveis nas páginas de área, que é o que importa para quem lê.
+  const dadosEstruturados = area ? null : montarEstrutura(itens);
 
   return (
     <section id="faq" className="relative bg-secondary secao-densa">
-      <Head>
-        <script type="application/ld+json">{JSON.stringify(dadosEstruturados)}</script>
-      </Head>
+      {dadosEstruturados && (
+        <Head>
+          <script type="application/ld+json">{JSON.stringify(dadosEstruturados)}</script>
+        </Head>
+      )}
       <div className="container-cz">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
           <motion.div
