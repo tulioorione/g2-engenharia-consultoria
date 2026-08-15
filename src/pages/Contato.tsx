@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Faq } from "@/components/site/Faq";
+import { FormularioContato } from "@/components/site/FormularioContato";
 import { contato, enderecoCompleto, socios } from "@/config/contato";
 import { proximosPassos } from "@/config/faq";
 import { Seo } from "@/components/site/Seo";
@@ -73,35 +74,47 @@ const Contato = () => (
           ))}
         </div>
 
-        {/* O medo silencioso de todo formulário B2B é virar alvo de ligação.
-            Dizer o que acontece depois remove o atrito antes do envio. */}
-        <div className="mt-24">
-          <motion.h2
+        {/* O formulário fica ao lado dos próximos passos de propósito: o medo
+            silencioso de todo contato B2B é virar alvo de ligação, e ler o que
+            vai acontecer enquanto preenche é o que remove esse atrito. */}
+        <div className="mt-24 grid gap-14 lg:grid-cols-[1.4fr_1fr] lg:gap-20">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7 }}
-            className="max-w-2xl text-3xl leading-[1.1] text-primary md:text-4xl"
           >
-            O que acontece <span className="font-display italic">depois que você chama.</span>
-          </motion.h2>
+            <h2 className="max-w-xl text-3xl leading-[1.1] text-primary md:text-4xl">
+              Conte o que sua obra <span className="font-display italic">precisa.</span>
+            </h2>
+            <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
+              Quanto mais você contar aqui, mais perto do orçamento já vem a primeira resposta.
+            </p>
+            <div className="mt-10">
+              <FormularioContato />
+            </div>
+          </motion.div>
 
-          <ol className="mt-12 grid gap-px bg-border md:grid-cols-3">
-            {proximosPassos.map((p, i) => (
-              <motion.li
-                key={p.n}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="flex flex-col bg-background p-8"
-              >
-                <span className="font-display text-4xl leading-none text-silver">{p.n}</span>
-                <h3 className="mt-5 text-lg text-primary">{p.titulo}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-              </motion.li>
-            ))}
-          </ol>
+          <div className="lg:pt-4">
+            <h2 className="text-2xl leading-tight text-primary">
+              O que acontece <span className="font-display italic">depois.</span>
+            </h2>
+            <ol className="mt-8 space-y-8 border-l border-border pl-6">
+              {proximosPassos.map((p, i) => (
+                <motion.li
+                  key={p.n}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: i * 0.08 }}
+                >
+                  <span className="font-display text-3xl leading-none text-silver">{p.n}</span>
+                  <h3 className="mt-3 text-lg text-primary">{p.titulo}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+                </motion.li>
+              ))}
+            </ol>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
