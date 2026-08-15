@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { NavLink } from "@/components/NavLink";
 import { contato, enderecoCompleto, redesSociais } from "@/config/contato";
 import { servicos } from "@/config/servicos";
 import logoClaro from "@/assets/g2-logo-claro.webp";
@@ -25,13 +26,29 @@ export const Footer = () => {
             </p>
           </div>
 
-          {/* Os serviços vêm do mesmo array que a seção de serviços, para não
-              divergirem quando um for adicionado ou renomeado. */}
-          <FooterCol
-            title="Serviços"
-            /* São 7 serviços; no rodapé cabem os 4 principais. */
-            links={servicos.slice(0, 4).map((s) => ({ label: s.title, to: "/servicos" }))}
-          />
+          {/* Os quatro nomes ficam como texto, não como link. Eram quatro
+              links apontando todos para /servicos — pareciam quatro destinos
+              diferentes e eram um só. Servem para a pessoa bater o olho e
+              saber o que a empresa faz; quem quer ir tem o link no fim.
+              Vêm do mesmo array da seção de serviços, para não divergirem. */}
+          <div>
+            <div className="mb-5 text-xs uppercase tracking-[0.2em] text-silver">Serviços</div>
+            <ul className="space-y-3 text-sm text-primary-foreground/70">
+              {servicos.slice(0, 4).map((s) => (
+                <li key={s.title}>{s.title}</li>
+              ))}
+              <li className="pt-1">
+                <NavLink
+                  to="/servicos"
+                  end
+                  className="text-xs uppercase tracking-[0.15em] transition-colors hover:text-accent-on-dark"
+                  activeClassName="text-accent-on-dark"
+                >
+                  Ver todos →
+                </NavLink>
+              </li>
+            </ul>
+          </div>
           <FooterCol
             title="Institucional"
             links={[
@@ -96,9 +113,18 @@ const FooterCol = ({
     <ul className="space-y-3 text-sm text-primary-foreground/70">
       {links.map((l) => (
         <li key={l.label}>
-          <Link to={l.to} className="hover:text-accent-on-dark transition-colors">
+          {/* NavLink em vez de Link para o item da página atual receber
+              aria-current="page". Leitor de tela passava por três links para
+              /contato dentro da própria /contato sem nenhum sinal de que um
+              deles era a página em que a pessoa já estava. */}
+          <NavLink
+            to={l.to}
+            end
+            className="transition-colors hover:text-accent-on-dark"
+            activeClassName="text-accent-on-dark"
+          >
             {l.label}
-          </Link>
+          </NavLink>
         </li>
       ))}
     </ul>

@@ -86,6 +86,10 @@ export const Header = () => {
               telas estreitas para caber ao lado do menu. */}
           <Link
             to="/contato"
+            /* Em /contato o botão vira autolink. Marcado com aria-current
+               para o leitor de tela não anunciar como se levasse a outro
+               lugar; visualmente segue igual, porque é o CTA principal. */
+            aria-current={pathname === "/contato" ? "page" : undefined}
             className="border border-silver/40 px-3 py-2 text-[10px] font-medium uppercase tracking-[0.12em] text-primary-foreground transition-all duration-500 hover:bg-silver/10 hover:border-silver sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-[0.15em]"
           >
             <span className="sm:hidden">Orçamento</span>
