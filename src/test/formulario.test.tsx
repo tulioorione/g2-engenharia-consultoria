@@ -18,15 +18,14 @@ describe("formulário de contato", () => {
     expect(await screen.findByText(/diga como podemos te chamar/i)).toBeInTheDocument();
     expect(screen.getByText(/precisamos do telefone com ddd/i)).toBeInTheDocument();
     expect(screen.getByText(/confira o e-mail/i)).toBeInTheDocument();
-    expect(screen.getByText(/escolha o tipo de imóvel/i)).toBeInTheDocument();
+    expect(screen.getByText(/conte um pouco mais sobre a obra/i)).toBeInTheDocument();
   });
 
-  it("pede os campos que qualificam o orçamento, não só nome e e-mail", () => {
+  it("tem os quatro campos, cada um com rótulo amarrado", () => {
     render(<FormularioContato />);
-    // Sem tipo de imóvel e etapa, a primeira resposta não consegue orçar nada.
-    expect(screen.getByLabelText(/tipo de imóvel/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/em que etapa está/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/metragem aproximada/i)).toBeInTheDocument();
+    ["Nome", "Telefone", "E-mail", "Mensagem"].forEach((rotulo) => {
+      expect(screen.getByLabelText(rotulo)).toBeInTheDocument();
+    });
   });
 
   it("mantém a armadilha de spam fora da ordem de tabulação", () => {

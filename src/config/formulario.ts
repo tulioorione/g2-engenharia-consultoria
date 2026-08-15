@@ -19,19 +19,3 @@ const ID = import.meta.env.VITE_FORMSPREE_ID?.trim();
 
 export const formularioConfigurado = Boolean(ID);
 export const formularioEndpoint = ID ? `https://formspree.io/f/${ID}` : "";
-
-/** Opções dos campos que qualificam o pedido antes da primeira resposta. */
-export const tiposImovel = [
-  "Apartamento",
-  "Casa",
-  "Loja ou escritório",
-  "Condomínio",
-  "Outro",
-];
-
-export const etapas = [
-  "Ainda é só uma ideia",
-  "Tenho projeto pronto",
-  "A obra já começou",
-  "Preciso de laudo ou parecer",
-];

@@ -5,37 +5,23 @@ import { z } from "zod";
 import { motion } from "framer-motion";
 import { AlertTriangle, CheckCircle2 } from "lucide-react";
 import { socios } from "@/config/contato";
-import {
-  etapas,
-  formularioConfigurado,
-  formularioEndpoint,
-  tiposImovel,
-} from "@/config/formulario";
+import { formularioConfigurado, formularioEndpoint } from "@/config/formulario";
 
 /**
- * Os campos existem para o orçamento já sair da primeira resposta. Um
- * formulário genérico de nome/e-mail/mensagem gera um contato que exige três
- * idas e vindas antes de dar para orçar — tipo de imóvel, etapa e metragem
- * são o que fecha o diagnóstico logo de cara.
+ * Quatro campos, empilhados. Formulário curto pede menos e recebe mais: cada
+ * campo a mais é uma chance de a pessoa desistir. O que falta para orçar sai
+ * na conversa de WhatsApp que vem depois.
  */
 const esquema = z.object({
   nome: z.string().trim().min(2, "Diga como podemos te chamar."),
-  telefone: z
-    .string()
-    .trim()
-    .min(10, "Precisamos do telefone com DDD.")
-    .regex(/[\d\s()+-]+/, "Use apenas números, espaços e parênteses."),
+  telefone: z.string().trim().min(10, "Precisamos do telefone com DDD."),
   email: z.string().trim().email("Confira o e-mail — parece estar incompleto."),
-  tipoImovel: z.string().min(1, "Escolha o tipo de imóvel."),
-  etapa: z.string().min(1, "Escolha em que etapa o projeto está."),
-  metragem: z.string().trim().optional(),
   mensagem: z.string().trim().min(15, "Conte um pouco mais sobre a obra."),
   // Armadilha de spam: fica escondida, então só robô preenche.
   siteWeb: z.string().max(0),
 });
 
 type Dados = z.infer<typeof esquema>;
-
 type Estado = "parado" | "enviando" | "enviado" | "erro";
 
 const classeCampo =
@@ -68,11 +54,8 @@ export const FormularioContato = () => {
           nome: dados.nome,
           telefone: dados.telefone,
           email: dados.email,
-          "tipo de imóvel": dados.tipoImovel,
-          etapa: dados.etapa,
-          "metragem aproximada": dados.metragem || "não informada",
           mensagem: dados.mensagem,
-          _subject: `Site G2 — ${dados.tipoImovel}, ${dados.etapa}`,
+          _subject: `Site G2 — contato de ${dados.nome}`,
         }),
       });
       if (!resposta.ok) throw new Error(String(resposta.status));
@@ -125,63 +108,48 @@ export const FormularioContato = () => {
         </p>
       )}
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <Campo id="nome" rotulo="Seu nome" erro={errors.nome?.message}>
-          <input id="nome" type="text" autoComplete="name" className={classeCampo} {...register("nome")} />
-        </Campo>
-        <Campo id="telefone" rotulo="Telefone ou WhatsApp" erro={errors.telefone?.message}>
-          <input
-            id="telefone"
-            type="tel"
-            inputMode="tel"
-            autoComplete="tel"
-            placeholder="(32) 90000-0000"
-            className={classeCampo}
-            {...register("telefone")}
-          />
-        </Campo>
-      </div>
-
-      <Campo id="email" rotulo="E-mail" erro={errors.email?.message}>
-        <input id="email" type="email" autoComplete="email" className={classeCampo} {...register("email")} />
-      </Campo>
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <Campo id="tipoImovel" rotulo="Tipo de imóvel" erro={errors.tipoImovel?.message}>
-          <select id="tipoImovel" className={classeCampo} defaultValue="" {...register("tipoImovel")}>
-            <option value="" disabled>
-              Selecione
-            </option>
-            {tiposImovel.map((t) => (
-              <option key={t}>{t}</option>
-            ))}
-          </select>
-        </Campo>
-        <Campo id="etapa" rotulo="Em que etapa está" erro={errors.etapa?.message}>
-          <select id="etapa" className={classeCampo} defaultValue="" {...register("etapa")}>
-            <option value="" disabled>
-              Selecione
-            </option>
-            {etapas.map((e) => (
-              <option key={e}>{e}</option>
-            ))}
-          </select>
-        </Campo>
-      </div>
-
-      <Campo id="metragem" rotulo="Metragem aproximada" opcional erro={errors.metragem?.message}>
+      <Campo id="nome" rotulo="Nome" erro={errors.nome?.message}>
         <input
-          id="metragem"
+          id="nome"
           type="text"
-          inputMode="numeric"
-          placeholder="Ex.: 80 m²"
+          autoComplete="name"
+          placeholder="Digite aqui..."
           className={classeCampo}
-          {...register("metragem")}
+          {...register("nome")}
         />
       </Campo>
 
-      <Campo id="mensagem" rotulo="O que sua obra precisa" erro={errors.mensagem?.message}>
-        <textarea id="mensagem" rows={5} className={classeCampo} {...register("mensagem")} />
+      <Campo id="telefone" rotulo="Telefone" erro={errors.telefone?.message}>
+        <input
+          id="telefone"
+          type="tel"
+          inputMode="tel"
+          autoComplete="tel"
+          placeholder="Digite aqui..."
+          className={classeCampo}
+          {...register("telefone")}
+        />
+      </Campo>
+
+      <Campo id="email" rotulo="E-mail" erro={errors.email?.message}>
+        <input
+          id="email"
+          type="email"
+          autoComplete="email"
+          placeholder="Digite aqui..."
+          className={classeCampo}
+          {...register("email")}
+        />
+      </Campo>
+
+      <Campo id="mensagem" rotulo="Mensagem" erro={errors.mensagem?.message}>
+        <textarea
+          id="mensagem"
+          rows={6}
+          placeholder="Digite aqui..."
+          className={classeCampo}
+          {...register("mensagem")}
+        />
       </Campo>
 
       {/* Armadilha de spam. Fora da tela e fora da ordem de tabulação. */}
@@ -191,8 +159,15 @@ export const FormularioContato = () => {
       </div>
 
       {estado === "erro" && (
-        <p role="alert" className="flex gap-3 border border-destructive/40 bg-destructive/5 p-4 text-sm text-foreground">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" strokeWidth={1.5} aria-hidden="true" />
+        <p
+          role="alert"
+          className="flex gap-3 border border-destructive/40 bg-destructive/5 p-4 text-sm text-foreground"
+        >
+          <AlertTriangle
+            className="mt-0.5 h-4 w-4 shrink-0 text-destructive"
+            strokeWidth={1.5}
+            aria-hidden="true"
+          />
           <span>
             Não conseguimos enviar agora. Chame no WhatsApp:{" "}
             {socios.map((s, i) => (
@@ -232,20 +207,17 @@ export const FormularioContato = () => {
 const Campo = ({
   id,
   rotulo,
-  opcional = false,
   erro,
   children,
 }: {
   id: string;
   rotulo: string;
-  opcional?: boolean;
   erro?: string;
   children: React.ReactNode;
 }) => (
   <div className="flex flex-col gap-2">
     <label htmlFor={id} className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
       {rotulo}
-      {opcional && <span className="ml-2 normal-case tracking-normal">(opcional)</span>}
     </label>
     {children}
     {erro && (

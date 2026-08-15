@@ -77,18 +77,19 @@ const Contato = () => (
         {/* O formulário fica ao lado dos próximos passos de propósito: o medo
             silencioso de todo contato B2B é virar alvo de ligação, e ler o que
             vai acontecer enquanto preenche é o que remove esse atrito. */}
-        <div className="mt-24 grid gap-14 lg:grid-cols-[1.4fr_1fr] lg:gap-20">
+        <div className="mt-24 grid gap-14 lg:grid-cols-2 lg:gap-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7 }}
+            className="max-w-xl"
           >
-            <h2 className="max-w-xl text-3xl leading-[1.1] text-primary md:text-4xl">
+            <h2 className="text-3xl leading-[1.1] text-primary md:text-4xl">
               Conte o que sua obra <span className="font-display italic">precisa.</span>
             </h2>
-            <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
-              Quanto mais você contar aqui, mais perto do orçamento já vem a primeira resposta.
+            <p className="mt-4 leading-relaxed text-muted-foreground">
+              Escreva do seu jeito. Um dos sócios responde pessoalmente.
             </p>
             <div className="mt-10">
               <FormularioContato />
@@ -115,27 +116,30 @@ const Contato = () => (
               ))}
             </ol>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-16 aspect-[3/1] overflow-hidden bg-muted"
-          >
-            <img
-              src={acordo}
-              srcSet={`${acordoSm} 800w, ${acordo} 1600w`}
-              sizes="100vw"
-              alt="Aperto de mãos sobre a planta de um projeto, ao lado do capacete de obra"
-              loading="lazy"
-              decoding="async"
-              width={1600}
-              height={1067}
-              className="h-full w-full object-cover"
-            />
-          </motion.div>
         </div>
+
+        {/* Fora do grid: estava como terceira célula das duas colunas, então
+            aparecia espremida na coluna da esquerda em vez de atravessar.
+            E o recorte era 3:1 numa foto 3:2 — cortava metade da altura. */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-24 aspect-[3/2] overflow-hidden bg-muted md:aspect-[21/9]"
+        >
+          <img
+            src={acordo}
+            srcSet={`${acordoSm} 800w, ${acordo} 1600w`}
+            sizes="(min-width: 1400px) 1320px, 100vw"
+            alt="Aperto de mãos sobre a planta de um projeto, ao lado do capacete de obra"
+            loading="lazy"
+            decoding="async"
+            width={1600}
+            height={1067}
+            className="h-full w-full object-cover"
+          />
+        </motion.div>
       </div>
     </section>
 
