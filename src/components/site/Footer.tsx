@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { NavLink } from "@/components/NavLink";
+import { navSecundaria } from "@/routes";
 import { contato, enderecoCompleto, redesSociais } from "@/config/contato";
 import { servicos } from "@/config/servicos";
 import logoClaro from "@/assets/g2-logo-claro.webp";
@@ -49,12 +50,17 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
+          {/* O rodapé é o único lugar onde /trabalhe-conosco aparece — fora do
+              header de propósito, para não disputar com o CTA de orçamento.
+              Vem de navSecundaria para o link não depender de alguém lembrar
+              de mantê-lo aqui. */}
           <FooterCol
             title="Institucional"
             links={[
               { label: "Sobre", to: "/sobre" },
               { label: "Atuação", to: "/atuacao" },
               { label: "Contato", to: "/contato" },
+              ...navSecundaria,
             ]}
           />
           <div>

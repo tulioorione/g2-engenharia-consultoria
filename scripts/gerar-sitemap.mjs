@@ -25,6 +25,10 @@ const rotas = [
   { path: "/atuacao/comercial", priority: "0.9", changefreq: "monthly" },
   { path: "/atuacao/condominios", priority: "0.9", changefreq: "monthly" },
   { path: "/contato", priority: "0.7", changefreq: "yearly" },
+  // Prioridade baixa: é página institucional de recrutamento, não concorre
+  // com os termos comerciais que trazem cliente. Fica no sitemap porque
+  // candidato busca "vaga obra Juiz de Fora" e precisa achar.
+  { path: "/trabalhe-conosco", priority: "0.5", changefreq: "yearly" },
 ];
 
 const hoje = new Date().toISOString().slice(0, 10);

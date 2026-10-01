@@ -6,6 +6,7 @@ import Servicos from "@/pages/Servicos";
 import AtuacaoPage from "@/pages/Atuacao";
 import { AtuacaoArea } from "@/pages/AtuacaoArea";
 import Contato from "@/pages/Contato";
+import TrabalheConosco from "@/pages/TrabalheConosco";
 import { areasAtuacao } from "@/config/atuacao";
 import NotFound from "@/pages/NotFound";
 
@@ -33,6 +34,7 @@ export const routes: RouteObject[] = [
         element: <AtuacaoArea slug={a.slug} />,
       })),
       { path: "contato", element: <Contato /> },
+      { path: "trabalhe-conosco", element: <TrabalheConosco /> },
       { path: "*", element: <NotFound /> },
     ],
   },
@@ -45,3 +47,17 @@ export const mainNav = [
   { label: "Atuação", to: "/atuacao" },
   { label: "Contato", to: "/contato" },
 ];
+
+/**
+ * Páginas que existem, mas ficam fora do menu principal.
+ *
+ * /trabalhe-conosco não entra no header de propósito: aquele menu é o caminho
+ * de conversão do cliente, e um quinto item disputaria atenção com o
+ * "Solicitar Orçamento" numa empresa que precisa de cliente antes de
+ * currículo. Candidato chega por link direto, por busca ou pelo rodapé.
+ *
+ * A lista é exportada, e não escrita no rodapé, porque dois lugares precisam
+ * dela: o rodapé, para o link, e a trilha do PageHeader, para a página não
+ * ficar sendo a única do site sem breadcrumb.
+ */
+export const navSecundaria = [{ label: "Trabalhe conosco", to: "/trabalhe-conosco" }];

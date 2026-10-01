@@ -33,6 +33,7 @@ describe("rotas", () => {
     ["/atuacao/comercial", "Reforma de loja"],
     ["/atuacao/condominios", "Manutenção predial"],
     ["/contato", "Vamos tirar seu projeto"],
+    ["/trabalhe-conosco", "Obra boa se faz com"],
   ])("renderiza %s com o título esperado", (path, titulo) => {
     renderRoute(path);
     expect(screen.getAllByRole("heading", { level: 1 })[0]).toHaveTextContent(titulo);
@@ -91,6 +92,32 @@ describe("rotas", () => {
     expect(screen.queryByText(/sou síndico/i)).not.toBeInTheDocument();
     renderRoute("/atuacao/condominios");
     expect(screen.getAllByText(/sou síndico/i).length).toBeGreaterThan(0);
+  });
+
+  /**
+   * A decisão de deixar /trabalhe-conosco fora do header é deliberada: aquele
+   * menu é o caminho de conversão do cliente. É o tipo de decisão que se
+   * desfaz sem ninguém perceber, então fica travada aqui.
+   */
+  it("expõe /trabalhe-conosco no rodapé e não no menu principal", () => {
+    renderRoute("/");
+
+    const rodape = screen.getByRole("contentinfo");
+    expect(
+      within(rodape).getByRole("link", { name: /trabalhe conosco/i }),
+    ).toHaveAttribute("href", "/trabalhe-conosco");
+
+    screen.getAllByRole("navigation", { name: /navegação principal/i }).forEach((nav) => {
+      expect(
+        within(nav).queryByRole("link", { name: /trabalhe conosco/i }),
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  it("dá trilha de navegação à página que fica fora do menu principal", () => {
+    renderRoute("/trabalhe-conosco");
+    const trilha = screen.getByRole("navigation", { name: /trilha de navegação/i });
+    expect(within(trilha).getByText("Trabalhe conosco")).toBeInTheDocument();
   });
 
   it("não deixa nenhum link apontando para href vazio", () => {

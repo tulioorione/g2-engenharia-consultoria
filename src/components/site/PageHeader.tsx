@@ -8,7 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { mainNav } from "@/routes";
+import { mainNav, navSecundaria } from "@/routes";
 import { areasAtuacao } from "@/config/atuacao";
 import simboloClaro from "@/assets/g2-simbolo-claro.webp";
 
@@ -16,7 +16,9 @@ import simboloClaro from "@/assets/g2-simbolo-claro.webp";
 const Trilha = () => {
   const { pathname } = useLocation();
 
-  const naNav = mainNav.find((i) => i.to === pathname);
+  // navSecundaria entra junto: a página existe e tem lugar na hierarquia, só
+  // não aparece no header. Sem ela aqui, seria a única página sem trilha.
+  const naNav = [...mainNav, ...navSecundaria].find((i) => i.to === pathname);
   // As páginas de área ficam um nível abaixo e não estão no menu principal:
   // sem este ramo, elas eram as únicas do site sem trilha nenhuma.
   const area = areasAtuacao.find((a) => `/atuacao/${a.slug}` === pathname);
