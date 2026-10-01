@@ -1,0 +1,70 @@
+# Publica o site no GitHub Pages.
+#
+# Existe porque o Pages, configurado como "deploy from a branch", serve a RAIZ
+# do repositorio — e a raiz tem o index.html de desenvolvimento, que aponta
+# para /src/main.tsx. O navegador nao executa TypeScript, entao a tela fica
+# branca. Quem precisa ir para o ar e a pasta dist, depois do build.
+#
+# IMPORTANTE: em Settings > Pages, a origem precisa estar como
+# "GitHub Actions". Enquanto estiver em "Deploy from a branch", este workflow
+# roda mas o Pages continua servindo a raiz.
+
+name: Publicar no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Permite republicar pelo botao, sem precisar de um commit novo.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Uma publicacao por vez; se chegar commit novo no meio, a antiga e descartada.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # O Pages serve em /<nome-do-repositorio>/. Sem isto todo asset sai
+      # absoluto de raiz e da 404.
+      VITE_BASE: /g2-engenharia-consultoria/
+      # Alimenta canonical, og:url e o sitemap. Sem isto apontariam para o
+      # dominio final, que ainda nao existe.
+      VITE_SITE_URL: https://tulioorione.github.io/g2-engenharia-consultoria
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      # O Pages nao le o public/_redirects (isso e Netlify e Cloudflare), e
+      # cai no 404.html quando a URL nao casa com nenhum arquivo. Como o build
+      # gera um .html por rota, isto cobre so o resto — e faz o router mostrar
+      # a pagina 404 do site em vez da generica do GitHub.
+      - run: cp dist/index.html dist/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
