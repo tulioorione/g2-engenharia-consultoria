@@ -43,10 +43,11 @@ describe("formulário de contato", () => {
 });
 
 /**
- * O formulário de candidatura tem duas regras que não são óbvias no código e
- * que um refactor desfaz sem quebrar nada visível: o link do currículo é
- * opcional mas validado quando preenchido, e o erro é amarrado ao campo por
- * aria. Sem esses dois testes, as duas somem em silêncio.
+ * Os quatro campos de texto, e o anexo que NÃO deve aparecer enquanto o plano
+ * do Formspree for gratuito. Esse último é o teste que mais importa: o campo
+ * ligado na conta errada faz o candidato escolher o arquivo, enviar e a
+ * candidatura ser recusada — perda silenciosa, que é justamente o que o resto
+ * do formulário foi feito para evitar.
  */
 describe("formulário de candidatura", () => {
   it("não envia vazio e diz o que falta, incluindo a área", async () => {
@@ -55,27 +56,23 @@ describe("formulário de candidatura", () => {
     await user.click(screen.getByRole("button", { name: /enviar candidatura/i }));
 
     expect(await screen.findByText(/diga como podemos te chamar/i)).toBeInTheDocument();
+    expect(screen.getByText(/precisamos do telefone com ddd/i)).toBeInTheDocument();
+    expect(screen.getByText(/confira o e-mail/i)).toBeInTheDocument();
     expect(screen.getByText(/escolha a área/i)).toBeInTheDocument();
-    expect(screen.getByText(/onde você já trabalhou/i)).toBeInTheDocument();
   });
 
-  it("aceita o link do currículo vazio, porque ele é opcional", async () => {
-    const user = userEvent.setup();
+  it("pede só os quatro campos, cada um com rótulo amarrado", () => {
     render(<FormularioCandidatura />);
-    await user.click(screen.getByRole("button", { name: /enviar candidatura/i }));
-
-    await screen.findByText(/diga como podemos te chamar/i);
-    // Exigir currículo hospedado eliminaria quem trabalha no canteiro.
-    expect(screen.queryByText(/cole o endereço completo/i)).not.toBeInTheDocument();
+    ["Nome", "Telefone", "E-mail", "Área de interesse"].forEach((rotulo) => {
+      expect(screen.getByLabelText(rotulo)).toBeInTheDocument();
+    });
   });
 
-  it("recusa um link de currículo que não é endereço", async () => {
-    const user = userEvent.setup();
+  it("não mostra o anexo enquanto o plano pago do Formspree não estiver ligado", () => {
+    // Sem VITE_FORMSPREE_ANEXO no ambiente de teste, é este o estado esperado.
     render(<FormularioCandidatura />);
-    await user.type(screen.getByLabelText(/link do currículo/i), "meu-curriculo.pdf");
-    await user.click(screen.getByRole("button", { name: /enviar candidatura/i }));
-
-    expect(await screen.findByText(/cole o endereço completo/i)).toBeInTheDocument();
+    expect(screen.queryByLabelText("Currículo")).not.toBeInTheDocument();
+    expect(screen.queryByText(/anexar currículo/i)).not.toBeInTheDocument();
   });
 
   it("amarra o erro ao campo para o leitor de tela, não só para quem vê", async () => {

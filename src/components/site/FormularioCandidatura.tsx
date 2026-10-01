@@ -1,39 +1,63 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
-import { AlertTriangle, CheckCircle2 } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Paperclip, X } from "lucide-react";
 import { socios } from "@/config/contato";
-import { formularioConfigurado, formularioEndpoint } from "@/config/formulario";
+import {
+  anexoHabilitado,
+  anexoLimiteMB,
+  formularioConfigurado,
+  formularioEndpoint,
+} from "@/config/formulario";
 import { areasDeInteresse } from "@/config/trabalheConosco";
 
 /**
- * Candidatura espontânea. Posta no MESMO endpoint do Formspree que o
- * formulário de contato, mudando só o `_subject` — candidatura e orçamento
- * chegam na mesma caixa, separados pelo assunto. Endpoint novo seria
- * configuração nova para manter, e a empresa tem dois sócios, não um RH.
+ * Candidatura espontânea. Quatro campos e um anexo opcional.
  *
- * Seis campos contra os quatro do contato, e a diferença é proposital: um
- * candidato já decidiu se candidatar quando chega aqui, então tolera mais
- * campo que um visitante decidindo se pede orçamento. Ainda assim só um é
- * obrigatório a mais — o link do currículo é opcional, porque exigir currículo
- * hospedado em algum lugar elimina justamente quem trabalha no canteiro.
+ * Posta no MESMO endpoint do Formspree que o formulário de contato, mudando só
+ * o `_subject` — candidatura e orçamento chegam na mesma caixa, separados pelo
+ * assunto. Endpoint novo seria configuração a mais para manter, e a G2 tem dois
+ * sócios, não um RH.
+ *
+ * Envia como multipart/form-data, e não como JSON igual ao de contato: JSON não
+ * transporta arquivo, e é o Formspree que exige multipart para anexo. Vale para
+ * os campos de texto também, então é um caminho de código só — e nada muda no
+ * dia que o anexo for ligado.
+ */
+const TIPOS_ACEITOS = [
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "image/jpeg",
+  "image/png",
+];
+
+const LIMITE_BYTES = anexoLimiteMB * 1024 * 1024;
+
+/**
+ * O currículo é validado por `any` + refine, e não por `z.instanceof(FileList)`:
+ * este módulo é avaliado também no Node, durante a pré-renderização do SSG, e
+ * lá `FileList` não existe — referenciá-lo no escopo do módulo quebraria o
+ * build. Os refines verificam por formato, que funciona nos dois ambientes.
  */
 const esquema = z.object({
   nome: z.string().trim().min(2, "Diga como podemos te chamar."),
   telefone: z.string().trim().min(10, "Precisamos do telefone com DDD."),
   email: z.string().trim().email("Confira o e-mail — parece estar incompleto."),
   area: z.string().min(1, "Escolha a área que mais combina com sua experiência."),
-  experiencia: z.string().trim().min(15, "Conte onde você já trabalhou e o que fazia."),
-  // Opcional de verdade: aceita vazio, mas se vier preenchido tem de ser URL —
-  // link quebrado num currículo é pior que campo em branco.
   curriculo: z
-    .string()
-    .trim()
-    .url("Cole o endereço completo, começando com https://")
-    .or(z.literal(""))
-    .optional(),
+    .any()
+    .optional()
+    .refine(
+      (f) => !f?.length || f[0].size <= LIMITE_BYTES,
+      `O arquivo passa de ${anexoLimiteMB} MB. Envie uma versão mais leve.`,
+    )
+    .refine(
+      (f) => !f?.length || TIPOS_ACEITOS.includes(f[0].type),
+      "Envie em PDF, DOC, DOCX, JPG ou PNG.",
+    ),
   // Armadilha de spam: fica escondida, então só robô preenche.
   siteWeb: z.string().max(0),
 });
@@ -46,15 +70,30 @@ const classeCampo =
 
 export const FormularioCandidatura = () => {
   const [estado, setEstado] = useState<Estado>("parado");
+  // Nome do arquivo escolhido. O <input type="file"> nativo mostra isso sozinho,
+  // mas de um jeito que não dá para estilizar — então ele fica escondido e quem
+  // aparece é o botão abaixo.
+  const [arquivo, setArquivo] = useState<File | null>(null);
+  const campoArquivo = useRef<HTMLInputElement | null>(null);
+
   const {
     register,
     handleSubmit,
     reset,
+    resetField,
     formState: { errors },
   } = useForm<Dados>({
     resolver: zodResolver(esquema),
-    defaultValues: { siteWeb: "", area: "", curriculo: "" },
+    defaultValues: { siteWeb: "", area: "" },
   });
+
+  const registroArquivo = register("curriculo");
+
+  const limparArquivo = () => {
+    resetField("curriculo");
+    setArquivo(null);
+    if (campoArquivo.current) campoArquivo.current.value = "";
+  };
 
   const enviar = async (dados: Dados) => {
     if (dados.siteWeb) return; // robô
@@ -64,24 +103,30 @@ export const FormularioCandidatura = () => {
     }
     setEstado("enviando");
     try {
+      const corpo = new FormData();
+      corpo.append("nome", dados.nome);
+      corpo.append("telefone", dados.telefone);
+      corpo.append("email", dados.email);
+      corpo.append("area", dados.area);
+      // Assunto diferente do contato: é o que separa candidatura de orçamento
+      // na caixa de entrada dos sócios.
+      corpo.append("_subject", `Site G2 — candidatura de ${dados.nome}`);
+
+      const escolhido: File | undefined = dados.curriculo?.[0];
+      if (anexoHabilitado && escolhido) corpo.append("curriculo", escolhido);
+
       const resposta = await fetch(formularioEndpoint, {
         method: "POST",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nome: dados.nome,
-          telefone: dados.telefone,
-          email: dados.email,
-          area: dados.area,
-          experiencia: dados.experiencia,
-          curriculo: dados.curriculo || "não informado",
-          // Assunto diferente do contato: é o que separa candidatura de
-          // orçamento na caixa de entrada dos sócios.
-          _subject: `Site G2 — candidatura de ${dados.nome}`,
-        }),
+        // Sem Content-Type de propósito: quem o define é o navegador, que
+        // precisa anexar o boundary do multipart. Declarar à mão quebra o
+        // envio do arquivo.
+        headers: { Accept: "application/json" },
+        body: corpo,
       });
       if (!resposta.ok) throw new Error(String(resposta.status));
       setEstado("enviado");
       reset();
+      setArquivo(null);
     } catch {
       setEstado("erro");
     }
@@ -97,10 +142,10 @@ export const FormularioCandidatura = () => {
         role="status"
       >
         <CheckCircle2 className="h-8 w-8 text-accent" strokeWidth={1.25} aria-hidden="true" />
-        <h3 className="mt-6 text-2xl text-primary">Recebemos sua candidatura.</h3>
-        <p className="mt-3 max-w-md leading-relaxed text-muted-foreground">
+        <h2 className="mt-6 text-2xl text-primary">Recebemos sua candidatura.</h2>
+        <p className="mt-3 leading-relaxed text-muted-foreground">
           Seu contato entra no nosso banco. Procuramos você quando houver uma frente que combine
-          com sua experiência — mesmo que leve um tempo.
+          com sua experiência.
         </p>
         <button
           type="button"
@@ -189,42 +234,65 @@ export const FormularioCandidatura = () => {
         )}
       </Campo>
 
-      <Campo
-        id="experiencia"
-        rotulo="Sua experiência"
-        erro={errors.experiencia?.message}
-        dica="Onde você trabalhou e o que fazia. Não precisa ser formal."
-      >
-        {(aria) => (
-          <textarea
-            id="experiencia"
-            rows={6}
-            placeholder="Digite aqui..."
-            className={classeCampo}
-            {...aria}
-            {...register("experiencia")}
-          />
-        )}
-      </Campo>
+      {/* Só existe com plano pago no Formspree. Ver config/formulario.ts: com a
+          conta gratuita o envio com anexo é recusado, então é melhor o campo
+          não existir do que existir e perder a candidatura. */}
+      {anexoHabilitado && (
+        <Campo
+          id="curriculo"
+          rotulo="Currículo"
+          erro={errors.curriculo?.message as string | undefined}
+          dica={`Opcional — PDF, DOC, DOCX, JPG ou PNG, até ${anexoLimiteMB} MB.`}
+        >
+          {(aria) => (
+            <>
+              {/* O input nativo fica escondido porque não dá para estilizar o
+                  botão "Escolher arquivo" do navegador. O <label> abaixo é o
+                  que aparece, e por ser label ele já abre o seletor no clique
+                  e no Enter, sem onClick e sem perder o foco por teclado. */}
+              <input
+                id="curriculo"
+                type="file"
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                className="sr-only"
+                {...aria}
+                {...registroArquivo}
+                ref={(el) => {
+                  registroArquivo.ref(el);
+                  campoArquivo.current = el;
+                }}
+                onChange={(e) => {
+                  registroArquivo.onChange(e);
+                  setArquivo(e.target.files?.[0] ?? null);
+                }}
+              />
+              <div className="flex flex-wrap items-center gap-3">
+                <label
+                  htmlFor="curriculo"
+                  className="inline-flex cursor-pointer items-center gap-2 border border-input px-5 py-3 text-sm text-primary transition-colors hover:border-accent hover:text-accent focus-within:border-accent"
+                >
+                  <Paperclip className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+                  {arquivo ? "Trocar arquivo" : "Anexar currículo"}
+                </label>
 
-      <Campo
-        id="curriculo"
-        rotulo="Link do currículo"
-        erro={errors.curriculo?.message}
-        dica="Opcional — LinkedIn, Google Drive ou qualquer endereço onde o currículo esteja."
-      >
-        {(aria) => (
-          <input
-            id="curriculo"
-            type="url"
-            inputMode="url"
-            placeholder="https://..."
-            className={classeCampo}
-            {...aria}
-            {...register("curriculo")}
-          />
-        )}
-      </Campo>
+                {arquivo && (
+                  <span className="flex min-w-0 items-center gap-2 text-sm text-muted-foreground">
+                    <span className="truncate">{arquivo.name}</span>
+                    <button
+                      type="button"
+                      onClick={limparArquivo}
+                      className="shrink-0 text-muted-foreground transition-colors hover:text-destructive"
+                      aria-label={`Remover o arquivo ${arquivo.name}`}
+                    >
+                      <X className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+                    </button>
+                  </span>
+                )}
+              </div>
+            </>
+          )}
+        </Campo>
+      )}
 
       {/* Armadilha de spam. Fora da tela e fora da ordem de tabulação. */}
       <div aria-hidden="true" className="absolute left-[-9999px]">
@@ -312,7 +380,7 @@ const Campo = ({
   const idErro = `${id}-erro`;
   const idDica = `${id}-dica`;
   // A dica também entra no describedby: ela explica o que o campo espera, e
-  // ler o rótulo sozinho ("Link do currículo") não diz que é opcional.
+  // ler o rótulo sozinho ("Currículo") não diz que é opcional nem o limite.
   const descrito = [erro && idErro, dica && idDica].filter(Boolean).join(" ");
 
   return (
